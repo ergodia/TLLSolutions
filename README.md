@@ -1,4 +1,4 @@
-# TLLSolutions
+# TLL Solutions
 
 **Doel van dit project:** het maken van de lijnvoering van intercitytreinen. Binnen een gegeven tijdsframe worden er een aantal trajecten uitgezet. Een traject is een route van sporen en stations waarover treinen heen en weer rijden. Een traject mag niet langer zijn dan het opgegeven tijdsframe.
 **Voorbeeld:** Het traject [Castricum , Zaandam , Hoorn , Alkmaar] is een traject met een duur van 59 minuten, en zou dus binnen het tijdsframe van een uur passen.
