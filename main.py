@@ -27,7 +27,7 @@ def main():
 
     # show of the holland graph
     holland_graph(PATH, stations)
-    
+
 
 if __name__ == "__main__":
     main()
