@@ -18,6 +18,7 @@ sys.path.append(os.path.join(PATH, "code", "trials"))
 from connections import Connections
 from stations import Stations
 from graph import holland_graph
+from shapefile_read import shapfile_reader
 
 
 def main():
@@ -26,7 +27,10 @@ def main():
     stations = Stations(PATH / "data" / "StationsHolland.csv")
 
     # show of the holland graph
-    holland_graph(PATH, stations)
+    #holland_graph(PATH, stations)
+
+    # shapefile reader
+    shapfile_reader(PATH)
 
 
 if __name__ == "__main__":
