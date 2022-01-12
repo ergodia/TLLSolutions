@@ -26,7 +26,7 @@ class Stations():
         
         return pd.read_csv(input_csv)
 
-    
+
     def data(self):
         """
         Returns all the data in the dataframe.

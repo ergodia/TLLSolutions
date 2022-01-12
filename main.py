@@ -11,22 +11,23 @@ from pathlib import Path
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(os.path.join(PATH, "code"))
 sys.path.append(os.path.join(PATH, "code", "classes"))
+sys.path.append(os.path.join(PATH, "code", "trials"))
+
 
 
 # import of the needed fuctions
 from connections import Connections
 from stations import Stations
-
+from graph import holland_graph
 
 def main():
     # TODO Moet misschien via een terminal ARGV worden gedaan zodat je daar kan aangeven welke bestanden moeten worden gebruikt. (Tim)
     connections = Connections(PATH / "data" / "ConnectiesHolland.csv")
     stations = Stations(PATH / "data" / "StationsHolland.csv")
 
-    # Test print code Wordt later verwijderd (Tim)
-    print(connections.data())
-    print(stations.data())
-
+    # show of the holland graph
+    holland_graph(PATH, stations)
+    
 
 if __name__ == "__main__":
     main()
