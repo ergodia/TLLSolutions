@@ -10,4 +10,3 @@ def shapfile_reader(path):
 
     rows = sf.shapeRecords()
     print(sf)
-

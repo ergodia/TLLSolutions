@@ -18,7 +18,6 @@ sys.path.append(os.path.join(PATH, "code", "trials"))
 from connections import Connections
 from stations import Stations
 from graph import holland_graph
-from shapefile_read import shapfile_reader
 
 
 def main():
@@ -29,9 +28,15 @@ def main():
     # show of the holland graph
     #holland_graph(PATH, stations)
 
-    # shapefile reader
-    shapfile_reader(PATH)
+    # shapefile reader TESTER
+    #shapfile_reader(PATH)
 
+    # line graphs test
+    data = {}
+    data["train 1"] = stations.data_from_stations(["Alkmaar", "Schiphol Airport", "Gouda"])
+    data["train 2"] = stations.data_from_stations(["Amsterdam Zuid", "Amsterdam Sloterdijk", "Haarlem", "Beverwijk"])
+
+    holland_graph(PATH, data, stations.bbox_limits())
 
 if __name__ == "__main__":
     main()
