@@ -31,9 +31,9 @@ class Stations():
         return read_data
 
 
-    def data_from_stations(self, station_list: list) -> dict:
+    def data_from_stations(self, station_list: list) -> DataFrame:
         """
-        Returns a dictionary with the longitude and latitude for the stations in a given order.
+        Returns a Dataframe with the longitude and latitude for the stations in a given order.
         """
 
         # extract the data from the given stations
