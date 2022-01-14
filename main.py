@@ -3,21 +3,15 @@ TLL Solutions
 main.py
 """
 
-# add the paths to the different python files used for this script
-import os, sys
+import os
 
 from pathlib import Path
+from codes.classes.connections import Connections
+from codes.classes.stations import Stations
+from codes.trials.graph import holland_graph
+
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))
-sys.path.append(os.path.join(PATH, "code"))
-sys.path.append(os.path.join(PATH, "code", "classes"))
-sys.path.append(os.path.join(PATH, "code", "trials"))
-
-
-# import of the needed fuctions
-from connections import Connections
-from stations import Stations
-from graph import holland_graph
 
 
 def main():
