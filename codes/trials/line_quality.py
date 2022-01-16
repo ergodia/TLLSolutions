@@ -47,7 +47,8 @@ def main():
     dataframe = pd.DataFrame(dataframe_rows)
     dataframe.plot.bar(x='possibility', y = 'quality', title="barplot quality per trainline possibility")
     plt.xticks(rotation='horizontal')
-    plt.savefig('barplot.png')
+    plt.savefig("/home/loekieloek/TLLSolutions/TLLSolutions/data/barplot.png")
+   
     
     
 def load_connections(file):
