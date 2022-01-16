@@ -47,8 +47,8 @@ class Stations():
         Returns the bbox limits for the drawing of the graph.
         """
 
-        return (self._stations.y.min(), self._stations.y.max(),      
-         self._stations.x.min(), self._stations.x.max())
+        return ((self._stations.y.min() - 1), (self._stations.y.max() + 1),      
+         (self._stations.x.min() - 1), (self._stations.x.max() + 1))
 
 
     def data(self):
