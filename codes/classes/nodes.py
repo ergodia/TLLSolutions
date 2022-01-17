@@ -6,6 +6,7 @@ class Stations():
             "longitude": longitude,
             "latitude": latitude
         }
+        self._number_connections = 0
 
 
     def add_connection(self, des_station, distance):
@@ -16,5 +17,9 @@ class Stations():
         self._connections[des_station] = distance
 
     
+    def calc_num_connections(self):
+        self._number_connections = len(self._connections)
+
+    
     def __repr__(self):
-        return f"{self._name} - {self._connections}"
+        return f"{self._connections} - {self._number_connections}"
