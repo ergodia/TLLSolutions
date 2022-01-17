@@ -8,6 +8,7 @@ line_quality.py
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 # test cases to create a boxplot
 test_cases = [
     {
@@ -42,13 +43,16 @@ def main():
     dataframe_rows = []
     for test_case in range(len(test_cases)):    
         dataframe_rows.append({ 'possibility': (test_case+1), 'quality': K(connections, test_cases[test_case]) })
-
+        
+        
     # create dataframe out of list with dictionaries and create barplot, save this barplot in barplot.png to look at data
     dataframe = pd.DataFrame(dataframe_rows)
     dataframe.plot.bar(x='possibility', y = 'quality', title="barplot quality per trainline possibility")
     plt.xticks(rotation='horizontal')
-    plt.savefig("/home/loekieloek/TLLSolutions/TLLSolutions/data/barplot.png")
-   
+    plt.savefig("../../data/barplot.png")
+    print(dataframe)
+    
+    
     
     
 def load_connections(file):
@@ -76,7 +80,10 @@ def p(connections: list([str, str, int]), trajects: dict):
     for connection in connections:
         if connection_in_trajects(connection, trajects):
             count = count + 1
-        
+    
+    # remove header in connections csv from list
+    connections.pop(0)
+    
     total = len(connections)
     return count / total
 
