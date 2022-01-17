@@ -4,9 +4,9 @@ main.py
 """
 
 import os
+import pandas as pd
 
 from pathlib import Path
-from codes.classes.connections import Connections
 from codes.classes.stations import Stations
 from codes.trials.graph import holland_graph
 from codes.classes.graph import Graph
@@ -18,28 +18,31 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 
 
 def main():
-    # TODO Moet misschien via een terminal ARGV worden gedaan zodat je daar kan aangeven welke bestanden moeten worden gebruikt. (Tim)
+    # load the stations for the creation of the graph
     stations = Stations(PATH / "data" / "StationsHolland.csv")
-
-    # show of the holland graph
-    #holland_graph(PATH, stations)
-
-    # shapefile reader TESTER
-    #shapfile_reader(PATH)
-
-    # line graphs test
-    # data = {}
-    # data["train 1"] = stations.data_from_stations(["Alkmaar", "Schiphol Airport", "Gouda"])
-    # data["train 2"] = stations.data_from_stations(["Amsterdam Zuid", "Amsterdam Sloterdijk", "Haarlem", "Beverwijk"])
-
-    # holland_graph(PATH, data, stations.bbox_limits())
-
+    print(stations.bbox_limits())
+    # load everything inside a graph
     graph = Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv")
-    print(Traveling_Salesman(graph, 7, 60).run())
-    print(1)
-    # score_calculation()
-    # wegschrijven
-    # holland_graph(PATH, data, stations.bbox_limits())
+
+    # calculate trajects with the help of an algorithm
+    trajects = Traveling_Salesman(graph, 7, 60).run()
+    
+    # create a graph of all the trajects
+    data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
+    holland_graph(PATH, data, stations.bbox_limits())
+    
+    # calculate the quality of the trajects
+    quality = score_calculation([trajects], PATH)
+    
+    # write the data to a csv file
+    trajects = {traject:f"{trajects[traject]}" for traject in trajects}
+    
+    output_data = pd.DataFrame.from_dict(trajects, orient="index")
+    output_data.reset_index(level=0, inplace=True)
+    output_data.columns = ["train", "stations"]
+    output_data = output_data.append({"train":"score", "stations": quality["quality"][0]}, ignore_index=True)
+    output_data.to_csv(PATH / "data" / "output.csv", index=False)
+    
 
 if __name__ == "__main__":
     main()

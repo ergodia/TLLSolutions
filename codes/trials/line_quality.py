@@ -36,8 +36,8 @@ test_cases = [
     
 ]
 
-def score_calculation(trajects):
-    connections = load_connections('/home/loekieloek/TLLSolutions/TLLSolutions/data/ConnectiesHolland.csv')
+def score_calculation(trajects, path):
+    connections = load_connections(path / "data" / "ConnectiesHolland.csv")
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
@@ -49,7 +49,7 @@ def score_calculation(trajects):
     dataframe = pd.DataFrame(dataframe_rows)
     dataframe.plot.bar(x='possibility', y = 'quality', title="barplot quality per trainline possibility")
     plt.xticks(rotation='horizontal')
-    plt.savefig("../../data/barplot.png")
+    plt.savefig(path / "data" / "barplot.png")
     
     return dataframe
     
