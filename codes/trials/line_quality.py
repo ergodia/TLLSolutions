@@ -36,13 +36,13 @@ test_cases = [
     
 ]
 
-def main():
+def score_calculation(trajects: list(dict)):
     connections = load_connections('/home/loekieloek/TLLSolutions/TLLSolutions/data/ConnectiesHolland.csv')
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
-    for test_case in range(len(test_cases)):    
-        dataframe_rows.append({ 'possibility': (test_case+1), 'quality': K(connections, test_cases[test_case]) })
+    for traject in range(len(trajects)):    
+        dataframe_rows.append({ 'possibility': (traject+1), 'quality': K(connections, trajects[traject]) })
         
         
     # create dataframe out of list with dictionaries and create barplot, save this barplot in barplot.png to look at data
@@ -52,9 +52,7 @@ def main():
     plt.savefig("../../data/barplot.png")
     print(dataframe)
     
-    
-    
-    
+        
 def load_connections(file):
     connections = []
 
@@ -124,7 +122,7 @@ def T(trajects:dict):
 # print(K(connections, trajects))
     
 
-main()
+score_calculation()
 
 
 
