@@ -1,7 +1,7 @@
 class Stations():
     def __init__(self, name, longitude, latitude):
         self._name = name
-        self._connections = {}
+        self.connections = {}
         self._coordinates = {
             "longitude": longitude,
             "latitude": latitude
@@ -14,12 +14,16 @@ class Stations():
         Adds a possible destination with the traveling time to the connections dictionary
         """
 
-        self._connections[des_station] = distance
+        self.connections[des_station] = distance
 
     
     def calc_num_connections(self):
-        self._number_connections = len(self._connections)
+        """
+        Calculates the number of connections for the station.
+        """
+        
+        self._number_connections = len(self.connections)
 
     
     def __repr__(self):
-        return f"{self._connections} - {self._number_connections}"
+        return f"{self.connections} - {self._number_connections}"

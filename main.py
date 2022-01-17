@@ -10,6 +10,8 @@ from codes.classes.connections import Connections
 from codes.classes.stations import Stations
 from codes.trials.graph import holland_graph
 from codes.classes.graph import Graph
+from codes.trials.line_quality import score_calculation
+from codes.algorithms.trials.traveling_salesman import Traveling_Salesman
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -17,7 +19,6 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 
 def main():
     # TODO Moet misschien via een terminal ARGV worden gedaan zodat je daar kan aangeven welke bestanden moeten worden gebruikt. (Tim)
-    #connections = Connections(PATH / "data" / "ConnectiesHolland.csv")
     stations = Stations(PATH / "data" / "StationsHolland.csv")
 
     # show of the holland graph
@@ -33,8 +34,12 @@ def main():
 
     # holland_graph(PATH, data, stations.bbox_limits())
 
-    print(Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv"))
-
+    graph = Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv")
+    print(Traveling_Salesman(graph, 7, 60).run())
+    print(1)
+    # score_calculation()
+    # wegschrijven
+    # holland_graph(PATH, data, stations.bbox_limits())
 
 if __name__ == "__main__":
     main()

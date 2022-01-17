@@ -36,7 +36,7 @@ test_cases = [
     
 ]
 
-def score_calculation(trajects: list(dict)):
+def score_calculation(trajects):
     connections = load_connections('/home/loekieloek/TLLSolutions/TLLSolutions/data/ConnectiesHolland.csv')
     
     # create list to store dictionaries that contain possibility and quality
@@ -120,9 +120,6 @@ def T(trajects:dict):
 # print(Min(connections, trajects))
 # print(T(trajects))
 # print(K(connections, trajects))
-    
-
-score_calculation()
 
 
 

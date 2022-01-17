@@ -4,7 +4,7 @@ from .nodes import Stations
 
 class Graph():
     def __init__(self, stations_csv, connections_csv):
-        self._stations = self.load_stations(stations_csv)
+        self.stations = self.load_stations(stations_csv)
         self.load_connections(connections_csv)
         self.calc_num_connections()
 
@@ -29,8 +29,8 @@ class Graph():
             reader = csv.DictReader(file)
 
             for row in reader:
-                self._stations[row["station1"]].add_connection(row["station2"], row["distance"])
-                self._stations[row["station2"]].add_connection(row["station1"], row["distance"])
+                self.stations[row["station1"]].add_connection(row["station2"], int(row["distance"]))
+                self.stations[row["station2"]].add_connection(row["station1"], int(row["distance"]))
 
     
     def calc_num_connections(self):
@@ -38,9 +38,9 @@ class Graph():
         Calculates the number of connections for each station.
         """
         
-        for station in self._stations:
-            self._stations[station].calc_num_connections()
+        for station in self.stations:
+            self.stations[station].calc_num_connections()
 
 
     def __str__(self):
-        return f"{self._stations}"
+        return f"{self.stations}"
