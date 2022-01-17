@@ -50,7 +50,8 @@ def score_calculation(trajects):
     dataframe.plot.bar(x='possibility', y = 'quality', title="barplot quality per trainline possibility")
     plt.xticks(rotation='horizontal')
     plt.savefig("../../data/barplot.png")
-    print(dataframe)
+    
+    return dataframe
     
         
 def load_connections(file):
