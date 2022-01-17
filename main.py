@@ -20,7 +20,7 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 def main():
     # load the stations for the creation of the graph
     stations = Stations(PATH / "data" / "StationsHolland.csv")
-    print(stations.bbox_limits())
+
     # load everything inside a graph
     graph = Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv")
 
