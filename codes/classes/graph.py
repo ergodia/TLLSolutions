@@ -29,6 +29,7 @@ class Graph():
 
             for row in reader:
                 self._stations[row["station1"]].add_connection(row["station2"], row["distance"])
+                self._stations[row["station2"]].add_connection(row["station1"], row["distance"])
 
 
     def __str__(self):

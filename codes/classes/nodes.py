@@ -13,8 +13,8 @@ class Stations():
         Adds a possible destination with the traveling time to the connections dictionary
         """
 
-        self._coordinates[des_station] = distance
+        self._connections[des_station] = distance
 
     
-    def __str__(self):
+    def __repr__(self):
         return f"{self._name} - {self._connections}"

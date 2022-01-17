@@ -27,11 +27,11 @@ def main():
     #shapfile_reader(PATH)
 
     # line graphs test
-    data = {}
-    data["train 1"] = stations.data_from_stations(["Alkmaar", "Schiphol Airport", "Gouda"])
-    data["train 2"] = stations.data_from_stations(["Amsterdam Zuid", "Amsterdam Sloterdijk", "Haarlem", "Beverwijk"])
+    # data = {}
+    # data["train 1"] = stations.data_from_stations(["Alkmaar", "Schiphol Airport", "Gouda"])
+    # data["train 2"] = stations.data_from_stations(["Amsterdam Zuid", "Amsterdam Sloterdijk", "Haarlem", "Beverwijk"])
 
-    holland_graph(PATH, data, stations.bbox_limits())
+    # holland_graph(PATH, data, stations.bbox_limits())
 
     print(Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv"))
 
