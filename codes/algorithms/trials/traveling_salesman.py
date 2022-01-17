@@ -88,7 +88,10 @@ class Traveling_Salesman():
             return starting_point
 
         # if there are no connections then return the first available station with connections
-        for station in list(stations):
+        for station in list(stations): 
+            # check if the station has connections to stations already visited
+            self.check_visited(self._stations[station].connections)
+            
             if self._stations[station].connections:
                 return station
 
