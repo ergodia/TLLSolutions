@@ -23,22 +23,26 @@ import numpy as np
 
 def holland_graph(path, stations_dict: dict, bbox):
     # load the map into the graph
-    map = plt.imread(path / "data" / "holland.png")
+    # map = plt.imread(path / "data" / "holland.png")
+    map = plt.imread(path / "data" / "Kaart_NL_grijs.png")
 
     fig, ax = plt.subplots()  
 
     for key in stations_dict:
         ax.plot(stations_dict[key].y, stations_dict[key].x, zorder=1, linewidth=3, marker="o", label=key)
 
+    # Plek waarin lijnen geplot moeten worden
     ax.set_xlim(bbox[0], bbox[1])
     ax.set_ylim(bbox[2], bbox[3])
     
-    ax.imshow(map, zorder=0, extent = bbox, aspect="equal")
-    fig.set_size_inches(10, 40, forward=True)
+    ax.imshow(map, zorder=0, extent = bbox, aspect="equal") # kaart inladen zorder(onder boven)
+    fig.set_size_inches(10, 40, forward=True) #kaart formaat
 
+    # legenda weergave
     ax.legend()
         
     plt.axis("off")
     plt.title("Holland Graph")
     
-    fig.savefig(path / "data" / "holland_graph.png", bbox_inches="tight", dpi=350)
+    # fig.savefig(path / "data" / "holland_graph.png", bbox_inches="tight", dpi=350)
+    fig.savefig(path / "data" / "Kaart_NL_grijs_graph.png", bbox_inches="tight", dpi=350)
