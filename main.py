@@ -11,7 +11,7 @@ from codes.classes.stations import Stations
 from codes.trials.graph import holland_graph
 from codes.classes.graph import Graph
 from codes.trials.line_quality import score_calculation
-from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
+from codes.algorithms.trials.traveling_salesman_rail import Traveling_Salesman_Rail
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))

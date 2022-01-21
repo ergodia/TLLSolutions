@@ -1,5 +1,4 @@
 train,stations
-<<<<<<< HEAD
 train 1,"['Den Helder', 'Alkmaar', 'Castricum', 'Zaandam', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Zuid', 'Schiphol Airport', 'Leiden Centraal', 'Den Haag Centraal']"
 train 2,"['Schiphol Airport', 'Amsterdam Zuid', 'Amsterdam Sloterdijk', 'Haarlem', 'Heemstede-Aerdenhout', 'Haarlem', 'Beverwijk', 'Castricum', 'Alkmaar', 'Hoorn']"
 train 3,"['Amsterdam Amstel', 'Amsterdam Zuid', 'Amsterdam Sloterdijk', 'Zaandam', 'Amsterdam Sloterdijk', 'Zaandam', 'Castricum', 'Alkmaar']"
@@ -8,10 +7,3 @@ train 5,"['Haarlem', 'Beverwijk', 'Zaandam', 'Beverwijk']"
 train 6,['Rotterdam Centraal']
 train 7,['Hoorn']
 score,7435.428571428571
-=======
-train 0,"['Heemstede-Aerdenhout', 'Haarlem', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Zuid', 'Schiphol Airport']"
-train 1,"['Den Haag Centraal', 'Leiden Centraal', 'Alphen a/d Rijn', 'Gouda', 'Rotterdam Alexander']"
-train 2,"['Alkmaar', 'Castricum', 'Zaandam', 'Beverwijk']"
-train 3,"['Delft', 'Schiedam Centrum', 'Rotterdam Centraal', 'Dordrecht']"
-score,5137.285714285714
->>>>>>> af7a1f5fcabf11db34a1d713ba6a667c7d7156ee
