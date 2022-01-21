@@ -11,7 +11,7 @@ from codes.classes.stations import Stations
 from codes.trials.graph import holland_graph
 from codes.classes.graph import Graph
 from codes.trials.line_quality import score_calculation
-from codes.algorithms.trials.traveling_salesman import Traveling_Salesman
+from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -25,8 +25,8 @@ def main():
     graph = Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv")
 
     # calculate trajects with the help of an algorithm
-    trajects = Traveling_Salesman(graph, 7, 60).run()
-    
+    trajects = Traveling_Salesman_Rail(graph, 7, 120).run()
+
     # create a graph of all the trajects
     data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
     holland_graph(PATH, data, stations.bbox_limits())
