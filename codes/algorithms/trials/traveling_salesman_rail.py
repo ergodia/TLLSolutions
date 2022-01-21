@@ -47,10 +47,15 @@ class Traveling_Salesman_Rail():
             total_traject_time = 0
             
             # starts the traject with a starting point
-            start_station = self.starting_point()
+            station_pointer = self.starting_point()
+
+            # stop the making of trajects if there isn't a starting point anymore
+            if station_pointer is None:
+                break
 
             # add the starting station to the traject
-            station_pointer = self.add_station_traject(traject, start_station)
+            self._trajects[f"train {traject}"] = [station_pointer]
+            self._already_visited.add(station_pointer)
 
             while True:
                 # retrieve the station the train will go next
@@ -63,7 +68,7 @@ class Traveling_Salesman_Rail():
                     break
 
                 # add the station to the traject
-                station_pointer = self.add_station_traject(traject, next_station["name"])
+                station_pointer = self.add_station_traject(traject, next_station["name"], station_pointer)
 
                 # calculate the total_traject_time
                 total_traject_time = total_traject_time + next_station["travel_time"]
@@ -79,17 +84,22 @@ class Traveling_Salesman_Rail():
         but will take a station with the lowest amount of connections.
         """
 
-        # get the lowest amount of connections from the connections dict
-        lowest_amount = min(self._connections.values())
+        # try to receive a starting point if there are any left
+        try:
+            # get the lowest amount of connections from the connections dict
+            lowest_amount = min(self._connections.values())
 
-        # create a set with all the stations with the lowest value
-        possibilities = [station for station in self._connections 
-                         if self._connections[station] == lowest_amount]
+            # create a set with all the stations with the lowest value
+            possibilities = [station for station in self._connections 
+                            if self._connections[station] == lowest_amount]
 
-        # pick a random starting point from the list of possibilities
-        starting_station = random.choice(possibilities)
+            # pick a random starting point from the list of possibilities
+            starting_station = random.choice(possibilities)
 
-        return starting_station
+            return starting_station
+        except Exception:
+            # return None if there isn't a suitable starting point anymore
+            return None
 
 
     def next_station(self, current_station):
@@ -146,7 +156,7 @@ class Traveling_Salesman_Rail():
             return None
 
 
-    def add_station_traject(self, traject, des_station):
+    def add_station_traject(self, traject, des_station, origin_station):
         """
         Adds the given station to the given traject and will execute
         the following mutations:
@@ -157,24 +167,37 @@ class Traveling_Salesman_Rail():
         """
 
         # add the station to the traject
-        if f"train {traject}" in self._trajects:
-            self._trajects[f"train {traject}"].append(des_station)
-        else:
-            self._trajects[f"train {traject}"] = [des_station]
+        self._trajects[f"train {traject}"].append(des_station)
 
         # add the station to the already visited set
         self._already_visited.add(des_station)
      
-        # retract one from the maximum of possible connections for that station
+        # retract one from the maximum of possible connections for the two stations
         self._connections[des_station] = self._connections[des_station] - 1
+        self._connections[origin_station] = self._connections[origin_station] - 1
         
-        # delete the station if the remaining connection count is equal to zero
-        if self._connections[des_station] == 0:
-            del self._connections[des_station]
+        # delete origin station connections if criteria are met
+        self.delete_station_connections(origin_station)
 
-            # if the station is also a multi visit station then delete it from there as well
-            if des_station in self._more_connections_allowed:
-                self._more_connections_allowed.remove(des_station)
+        # delete destination station connections if criteria are met
+        self.delete_station_connections(des_station)
+
+        # delete the connection used from both stations so it can't be used anymore
+        self._all_stations[origin_station].connections.pop(des_station)
+        self._all_stations[des_station].connections.pop(origin_station)
 
         # return the des_station to set it as the next station pointer
         return des_station
+
+
+    def delete_station_connections(self, station):
+        """
+        Deletes station from connections if criteria are True.
+        """
+
+        if self._connections[station] == 0:
+            del self._connections[station]
+
+            # if the station is also a multi visit station then delete it from there as well
+            if station in self._more_connections_allowed:
+                self._more_connections_allowed.remove(station)
