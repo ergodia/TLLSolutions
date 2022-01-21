@@ -10,7 +10,7 @@ distance_table.py
 import pandas as pd
 
 # Read data
-df_1 = pd.read_csv( '../../data/ConnectiesHolland.csv')
+df_1 = pd.read_csv( '../../data/ConnectiesNationaal.csv')
 
 # Rename columns
 df_2 = df_1.rename(columns={'station1': 'station2', 'station2': 'station1'} )
@@ -36,4 +36,4 @@ total = matrix_df['connections'].sum()
 print('Aantal connections:', total/2)
 
 # Write dataframe into CSV file
-matrix_df.to_csv('../../data/DistanceTable.csv')
+matrix_df.to_csv('../../data/DistanceTable_NL.csv')

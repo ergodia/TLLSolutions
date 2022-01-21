@@ -10,10 +10,9 @@
 - Verbindingen: *treinstation A -> treinstation B, aantal minuten*
 - Locaties: *x, y-coördinaten*
 
-
 ## TO DO
 
-- [ ] Maak een Python class voor ieder component
-- [ ] Schrijf een functie die een instantie van het probleem inleest en op basis daarvan instanties (objecten) van de verschillende classes aanmaakt
-- [ ] Schrijf een functie, die de objecten van de verschillende classes inneemt en output in het voorgeschreven format genereerd.
-- [ ] Maak een visualisatie (op basis van de coördinaten en tijd)
+- [x] Maak een Python class voor ieder component
+- [x] Schrijf een functie die een instantie van het probleem inleest en op basis daarvan instanties (objecten) van de verschillende classes aanmaakt
+- [x] Schrijf een functie, die de objecten van de verschillende classes inneemt en output in het voorgeschreven format genereerd.
+- [x] Maak een visualisatie (op basis van de coördinaten en tijd)
