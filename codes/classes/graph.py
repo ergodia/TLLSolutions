@@ -29,8 +29,9 @@ class Graph():
             reader = csv.DictReader(file)
 
             for row in reader:
-                self.stations[row["station1"]].add_connection(row["station2"], int(row["distance"]))
-                self.stations[row["station2"]].add_connection(row["station1"], int(row["distance"]))
+                # add the connection to each node
+                self.stations[row["station1"]].add_connection(row["station2"], float(row["distance"]))
+                self.stations[row["station2"]].add_connection(row["station1"], float(row["distance"]))
 
     
     def calc_num_connections(self):
