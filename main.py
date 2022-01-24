@@ -25,7 +25,10 @@ def main():
     graph = Graph(PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv")
 
     # calculate trajects with the help of an algorithm
-    trajects = Traveling_Salesman_Rail(graph, 20, 180).run()
+    check = False
+
+    while check == False:
+        trajects, check = Traveling_Salesman_Rail(graph, 20, 180).run()
 
     # create a graph of all the trajects
     data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
