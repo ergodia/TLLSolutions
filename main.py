@@ -38,7 +38,7 @@ def main():
     quality = score_calculation([trajects], PATH)
     
     # write the data to a csv file
-    trajects = {traject:f"{trajects[traject]}" for traject in trajects}
+    trajects = {traject:f"[{', '.join(trajects[traject])}]" for traject in trajects}
     
     output_data = pd.DataFrame.from_dict(trajects, orient="index")
     output_data.reset_index(level=0, inplace=True)
