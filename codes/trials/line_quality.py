@@ -37,7 +37,7 @@ test_cases = [
 ]
 
 def score_calculation(trajects, path):
-    connections = load_connections(path / "data" / "ConnectiesHolland.csv")
+    connections = load_connections(path / "data" / "ConnectiesNationaal.csv")
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
@@ -102,7 +102,7 @@ def Min(connections: list([str, str, int]), trajects: dict):
         for i in range(len(traject)-1):
             for connection in connections:
                 if connection_equals_traject_part(connection, traject, i):
-                    total_minutes = total_minutes + int(connection[2])
+                    total_minutes = total_minutes + float(connection[2].strip())
     return total_minutes
 
 

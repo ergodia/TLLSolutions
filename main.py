@@ -32,7 +32,7 @@ def main():
 
     # create a graph of all the trajects
     data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
-    holland_graph(PATH, data, stations.bbox_limits())
+    #holland_graph(PATH, data, stations.bbox_limits())
     
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH)

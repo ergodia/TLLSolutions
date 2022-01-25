@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import geopandas as gpd
+#import geopandas as gpd
 import numpy as np
-import plotly.graph_objects as go
+#import plotly.graph_objects as go
 
 
 # def holland_graph_1st(path, stations):
