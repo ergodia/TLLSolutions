@@ -38,7 +38,7 @@ class Graph():
         """
         Calculates the number of connections for each station.
         """
-        
+
         for station in self.stations:
             self.stations[station].calc_num_connections()
 

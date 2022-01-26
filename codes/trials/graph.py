@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import geopandas as gpd
 import numpy as np
 import plotly.graph_objects as go
-from matplotlib.colors import hsv_to_rgb
-
 
 def holland_graph(path, stations_dict: dict, bbox):
     # load the map into the graph
