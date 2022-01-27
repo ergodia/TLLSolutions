@@ -11,7 +11,8 @@ import os
 from pathlib import Path
 from codes.trials.line_quality import score_calculation
 from codes.classes.graph import Graph
-from codes.algorithms.rail_hill_climber import Hill_Climber_Rail
+from codes.classes.network import Network
+from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -19,8 +20,8 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 
 def main():
     graph = Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv")
-    
-    Hill_Climber_Rail(graph.stations, PATH / "data" / "Holland_Output" / "output.csv", 120)
+    trajects = Network(PATH / "data" / "Holland_Output" / "output.csv", graph.stations)
+    Simulated_Annealing_Rail(trajects, 120).run()
 
 
 if __name__ == "__main__":
