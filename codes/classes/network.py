@@ -5,7 +5,9 @@ class Network():
         self.stations = stations
         self.score, self.trajects = self.load_trajects(trajects_csv)
         self.stations_traject = self.create_stations_set()
-        self.trajects_length, self.trajects_duration = self.calc_length_duration()
+        self.trajects_length = {}
+        self.trajects_duration = {}
+        self.calc_init_length_duration()
 
     def load_trajects(self, trajects_csv):
         """
@@ -25,36 +27,42 @@ class Network():
     def create_stations_set(self):
         return {traject: set(self.trajects[traject]) for traject in self.trajects}
 
-    def calc_length_duration(self):
+    def calc_init_length_duration(self):
         """
         Calculates the length and duration of each traject for the given file.
         #### KAN ZIJN DAT TRAJECT LENGTH NIET GEBRUIKT WORDT, VERWIJDER DIT DAN!!! ####
         """
 
-        traject_duration = {}
-        traject_length = {}
-
         for traject in self.trajects:
-            # calculate the length of each traject
-            traject_length[traject] = len(self.trajects[traject])
+            self.calc_length_duration(traject, update=False)
 
-            # calculate the duration of each traject
-            for index in range(len(self.trajects[traject][:-1])):
-                station1 = self.trajects[traject][index]
-                station2 = self.trajects[traject][index + 1]
-
-                if traject in traject_duration:
-                    traject_duration[traject] += self.stations[station1].connections[station2]
-                else:
-                    traject_duration[traject] = self.stations[station1].connections[station2]
-
-        # return the calculated values
-        return traject_length, traject_duration
-
-    def update(self):
+    def update_stations_set(self, traject):
         """
-        Updates the stations_traject set, trajects_length and trajects_duration of the network
+        Updates a given traject in the stations_traject set.
         """
 
-        self.create_stations_set()
-        self.calc_length_duration()
+        self.stations_traject[traject] = set(self.trajects[traject])
+
+    def calc_length_duration(self, traject, update):
+        """
+        Calculates the length and duration of a given traject.
+        It purges the trajects set if Update is True which indicates that
+        the traject needs to be updated.
+        """
+
+        if update == True:
+            self.trajects_length[traject].clear()
+            self.trajects_duration[traject].clear()
+
+        # calculate the length of each traject
+        self.trajects_length[traject] = len(self.trajects[traject])
+
+        # calculate the duration of each traject
+        for index in range(len(self.trajects[traject][:-1])):
+            station1 = self.trajects[traject][index]
+            station2 = self.trajects[traject][index + 1]
+
+            if traject in self.trajects_duration:
+                self.trajects_duration[traject] += self.stations[station1].connections[station2]
+            else:
+                self.trajects_duration[traject] = self.stations[station1].connections[station2]
