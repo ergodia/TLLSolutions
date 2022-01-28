@@ -44,7 +44,7 @@ class Simulated_Annealing_Rail():
         Retrieves a traject where the given traject can be implemented.
         """
 
-        # chooce the beginning of the end of the traject
+        # chooce the beginning or the end of the traject
         station_pointer = random.choice([traject_to_implement[0], traject_to_implement[-1]])
 
         # check in which trajects the station is also present
