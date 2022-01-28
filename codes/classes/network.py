@@ -77,11 +77,11 @@ class Network():
 
         # get the first traject which is too long
         traject_numbers = [traject for traject in self.trajects_duration 
-                             if self.trajects_duration[traject] > maximum_traject_length]
+                           if self.trajects_duration[traject] > maximum_traject_length]
 
         # return None if all trajects are to spec
         if not traject_numbers:
-            return None, None
+            return (None, None)
 
         # retrieve the first traject which is too long
         traject_number = traject_numbers[0]
@@ -89,27 +89,47 @@ class Network():
         # copy the traject
         traject = copy.deepcopy(self.trajects[traject_number])
 
-        # chooce between the front and back of the traject
-        side = random.choice(("front", "back"))
+        # chooce between the front and back of the traject to check first
+        to_reverse = random.choice([True, False])
+        sides = ["front", "back"]
 
-        # reverse the traject if it needs to go from the back
-        if side == "back":
-            traject.reverse()
+        # reverse the list if to_reverse is True
+        if to_reverse is True:
+            sides.reverse()
 
-        # retrieve the end index for a suitable traject
-        traject_duration = 0
-        
-        for index in range(len(traject[:-1])):
-            station1 = traject[index]
-            station2 = traject[index + 1]
+        for side in sides:
+            # reverse the traject if it needs to go from the back
+            if side == "back":
+                traject.reverse()
 
-            traject_duration += self.stations[station1].connections[station2]
+            # retrieve the end index for a suitable traject
+            traject_duration = 0
+            
+            for index in range(len(traject[:-1])):
+                station1 = traject[index]
+                station2 = traject[index + 1]
 
-            if traject_duration > maximum_traject_length:
-                end_index = index
+                traject_duration += self.stations[station1].connections[station2]
 
+                if traject_duration > maximum_traject_length:
+                    end_index = index
+                    
+                    # slice the parts out which are too much
+                    sliced_out = traject[end_index:]
+                    
+                    if sliced_out != None:
+                        # create the new traject
+                        self.trajects[traject_number] = traject[:end_index + 1]
+
+                        # return the sliced out portion
+                        return sliced_out, traject_number
+
+        # slice the last two sations out if a suitable solution can't be found
         # create the new traject
-        self.trajects[traject_number] = traject[:end_index]
+        last_two_index = (len(self.trajects[traject_number]) - 2)
+
+        self.trajects[traject_number] = traject[:last_two_index + 1]
+        sliced_out = traject[last_two_index:]
 
         # return the sliced out portion
-        return traject[end_index:], traject_number
+        return sliced_out, traject_number

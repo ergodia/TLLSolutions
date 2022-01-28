@@ -31,7 +31,7 @@ class Simulated_Annealing_Rail():
         # reindex trajects
         self.reindex_trajects()
 
-        print(1)
+        return self._working_network.trajects
 
     def reindex_trajects(self):
         """
@@ -64,34 +64,62 @@ class Simulated_Annealing_Rail():
         traject_to_implement = copy.deepcopy(self._working_network.trajects[original_traject_number])
 
         # rearrange the tracks and store the sliced_out portion and set it aside
-        sliced_out = self.rearrange_tracks(original_traject_number, traject_to_implement)
+        sliced_out = self.rearrange_tracks(original_traject_number, traject_to_implement, full_traject=True)
         original_traject_number = None
 
         # keep rearranging until we don't have any sliced out bits anymore
-        # it can only do that up to 50 times
         tries = 0
-        
-        while sliced_out != None:
-            sliced_out = self.rearrange_tracks(original_traject_number, sliced_out)
-            original_traject_number = None
 
-            # check for traject too long and make it to spec
-            if sliced_out is None:
-                sliced_out, original_traject_number = self._working_network.make_traject_to_spec(self._maximum_track_time)
-            
+        self.process_slices(original_traject_number, sliced_out, tries)
+
+        # retrieve a traject that is too long
+        sliced_out, original_traject_number = self._working_network.make_traject_to_spec(self._maximum_track_time)
+
+        # keep rearranging until the traject are all within time
+        tries = 0
+
+        self.trajects_in_time(original_traject_number, sliced_out, tries)
+
+    def process_slices(self, original_traject_number, sliced_out, tries):
+        """
+        Processes slices.
+        This may be done for 100 times.
+        """
+
+        while sliced_out != None:
+            sliced_out = self.rearrange_tracks(original_traject_number, sliced_out, full_traject=False)
             tries += 1
 
-            if tries >= 50:
+            if tries == 100:
                 sliced_out = self.place_sliced_element(sliced_out)
 
-    def rearrange_tracks(self, original_traject_number, traject_to_implement):
+    def trajects_in_time(self, original_traject_number, sliced_out, tries):
+        """
+        Makes sure that all trajects are within time.
+        This may be done for 100 times.
+        """
+        
+        while sliced_out != None:
+            sliced_out = self.rearrange_tracks(original_traject_number, sliced_out, full_traject=False)
+            original_traject_number = None
+            tries += 1
+
+            # place the sliced out traject in its own traject after 100 iterations
+            if tries == 100:
+                sliced_out = self.place_sliced_element(sliced_out)
+
+            # check if there are more trajects not in time
+            if sliced_out == None:
+                sliced_out, original_traject_number = self._working_network.make_traject_to_spec(self._maximum_track_time)
+
+    def rearrange_tracks(self, original_traject_number, traject_to_implement, full_traject):
         """
         Rearanges the tracks and return the bit, if any, that has been
         sliced out.
         """
         
         # get the station_pointer (station which will be the head) and implement_traject (traject where the ) for the sliced_out bit
-        station_pointer, implement_traject = self.get_implement_traject(traject_to_implement, original_traject_number)
+        station_pointer, implement_traject = self.get_implement_traject(traject_to_implement, original_traject_number, full_traject)
         
         # remove the implement_traject from the traject_no_check since it could be used again
         self._working_network.trajects_no_check.discard(implement_traject)
@@ -140,7 +168,6 @@ class Simulated_Annealing_Rail():
         
         # clear the original traject if this is used and update the traject_duration/length and stations_set
         if original_traject_number != None:
-            self._working_network.trajects[original_traject_number].clear()
             self._working_network.update_stations_set(original_traject_number)
             self._working_network.calc_duration(original_traject_number, update=True)
         
@@ -148,7 +175,7 @@ class Simulated_Annealing_Rail():
         self._working_network.update_stations_set(implement_traject)
         self._working_network.calc_duration(implement_traject, update=True)
 
-    def get_implement_traject(self, traject_to_implement, original_traject_number):
+    def get_implement_traject(self, traject_to_implement, original_traject_number, full_traject):
         """
         Retrieves a traject where the given traject can be implemented.
         """
@@ -185,7 +212,7 @@ class Simulated_Annealing_Rail():
             implement_traject = random.choice(station_pressence)
 
             # clear the original traject if this is used
-            if original_traject_number != None:
+            if original_traject_number != None and full_traject == True:
                 self._working_network.trajects[original_traject_number].clear()
       
             return station_pointer, implement_traject
@@ -212,9 +239,10 @@ class Simulated_Annealing_Rail():
             
             # slice a bit out to make place for the new bit
             sliced_out = self._working_network.trajects[implement_traject][:index + 1]
+            left_over = self._working_network.trajects[implement_traject][index + 1:]
             
             # add the new bid to the traject
-            self._working_network.trajects[implement_traject] = old_traject + self._working_network.trajects[implement_traject][index + 1:]
+            self._working_network.trajects[implement_traject] = old_traject + left_over
         else:
             # check if the traject is in the right orientation
             if old_traject[0] != station_pointer:
@@ -222,9 +250,10 @@ class Simulated_Annealing_Rail():
             
             # slice a bit out to make place for the new bit
             sliced_out = self._working_network.trajects[implement_traject][index:]
+            left_over = self._working_network.trajects[implement_traject][:index]
             
             # add the new bid to the traject
-            self._working_network.trajects[implement_traject] = self._working_network.trajects[implement_traject][:index] + old_traject
+            self._working_network.trajects[implement_traject] = left_over + old_traject
 
         # check if the sliced out bit is only one station
         # this indicates a begin or end station and doesn't have to be stored

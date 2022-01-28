@@ -37,7 +37,7 @@ test_cases = [
 ]
 
 def score_calculation(trajects, path):
-    connections = load_connections(path / "data" / "ConnectiesNationaal.csv")
+    connections = load_connections(path / "data" / "ConnectiesHolland.csv")
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
