@@ -21,7 +21,7 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 def main():
     graph = Graph(PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv")
     trajects = Network(PATH / "data" / "Holland_Output" / "output.csv", graph.stations)
-    Simulated_Annealing_Rail(trajects, 120).run()
+    Simulated_Annealing_Rail(trajects, 120, 7, 500).run()
 
 
 if __name__ == "__main__":
