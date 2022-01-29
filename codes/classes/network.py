@@ -11,7 +11,6 @@ class Network():
         self.create_stations_set()
         self.trajects_duration = {}
         self.calc_init_length_duration()
-        self.trajects_no_check = set()
 
     def load_trajects(self, trajects_csv):
         """

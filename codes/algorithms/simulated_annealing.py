@@ -1,10 +1,13 @@
-from operator import index
 import random
 import copy
+import math
+from ..trials.line_quality import K
+
+from progress.bar import Bar
 
 
 class Simulated_Annealing_Rail():
-    def __init__(self, network, maximum_track_time, maximum_trajects, iterations):
+    def __init__(self, network, maximum_track_time, maximum_trajects, iterations, start_temperature, connections):
         """
         Initialize the needed data.
         """
@@ -14,24 +17,95 @@ class Simulated_Annealing_Rail():
         self._accepted_network = copy.deepcopy(network)
         self._maximum_track_time = maximum_track_time
         self._maximum_trajects = maximum_trajects
+        self._start_temperature = start_temperature
+        self._current_temperature = start_temperature
+        self._iterations = iterations
+        self._all_connections = connections
 
     def run(self):
         """
         Runs the simulated annealing algortithm with the given information.
         """
 
-        # change the solution
-        self.change_solution()
+        # start the bar progress bar
+        bar = Bar("Progress Algortithm", max=self._iterations)
 
-        # check if the maximum_traject number is not exceeded
-        # if len(self._working_network.trajects) > self._maximum_trajects:
-        #     self._working_network = copy.deepcopy(self._accepted_network)
-        #     continue
+        # go through the given iterations
+        for iteration in range(self._iterations):
+            # change the solution
+            self.change_solution()
 
-        # reindex trajects
-        self.reindex_trajects()
+            # check if the maximum_traject number is not exceeded
+            # in that case just treat it as a worser case
+            if len(self._working_network.trajects) > self._maximum_trajects:
+                self._working_network = copy.deepcopy(self._accepted_network)
+                self.update_temperature()
+                continue
 
-        return self._working_network.trajects
+            # update the score
+            self.update_score()
+
+            # reindex trajects
+            self.reindex_trajects()
+
+            # check the solution
+            self.check_solution()
+
+            # go to the next iteration
+            bar.next()
+
+        bar.finish()
+
+        # return the best network
+        return self._best_network.trajects
+
+    def check_solution(self):
+        """
+        Checks and accepts better solutions than the current solution.
+        """
+
+        old_score = self._accepted_network.score
+        new_score = self._working_network.score
+
+        # calculate the probability of accepting the new network
+        delta = old_score - new_score
+    
+        # check if the delta is equal to 0
+        # this will be treated as a small deterioration so the delta will be equal to 1
+        if delta == 0:
+            delta = 1
+
+        probability = math.exp(-delta / self._current_temperature)
+
+        # check if the new network will be accepted on a random chance
+        if random.random() < probability:
+            self._accepted_network = copy.deepcopy(self._working_network)
+        else:
+            self._working_network = copy.deepcopy(self._accepted_network)
+
+        # check if the accepted_network score is higher than the best network
+        if self._accepted_network.score > self._best_network.score:
+            self._best_network = copy.deepcopy(self._accepted_network)
+        
+        # update the temperature
+        self.update_temperature()
+
+
+    def update_score(self):
+        """
+        Updates the score of the working network.
+        """
+
+        self._working_network.score = K(self._all_connections, self._working_network.trajects)
+
+
+    def update_temperature(self):
+        """
+        Updates the temperature which will define the chance that
+        a solution will be accepted.
+        """
+
+        self._current_temperature = self._current_temperature - (self._start_temperature / self._iterations)
 
     def reindex_trajects(self):
         """
@@ -60,7 +134,7 @@ class Simulated_Annealing_Rail():
         """
 
         # choose the shortest traject TESTING
-        original_traject_number = min(self._working_network.trajects_duration, key=self._working_network.trajects_duration.get)
+        original_traject_number = self.get_starting_traject()
         traject_to_implement = copy.deepcopy(self._working_network.trajects[original_traject_number])
 
         # rearrange the tracks and store the sliced_out portion and set it aside
@@ -79,6 +153,13 @@ class Simulated_Annealing_Rail():
         tries = 0
 
         self.trajects_in_time(original_traject_number, sliced_out, tries)
+
+    def get_starting_traject(self):
+        """
+        Returns the starting traject for the beginning of the change solution.
+        """
+        
+        return min(self._working_network.trajects_duration, key=self._working_network.trajects_duration.get)
 
     def process_slices(self, original_traject_number, sliced_out, tries):
         """
@@ -111,6 +192,8 @@ class Simulated_Annealing_Rail():
             # check if there are more trajects not in time
             if sliced_out == None:
                 sliced_out, original_traject_number = self._working_network.make_traject_to_spec(self._maximum_track_time)
+                if sliced_out != None:
+                    tries = 0
 
     def rearrange_tracks(self, original_traject_number, traject_to_implement, full_traject):
         """
@@ -120,9 +203,6 @@ class Simulated_Annealing_Rail():
         
         # get the station_pointer (station which will be the head) and implement_traject (traject where the ) for the sliced_out bit
         station_pointer, implement_traject = self.get_implement_traject(traject_to_implement, original_traject_number, full_traject)
-        
-        # remove the implement_traject from the traject_no_check since it could be used again
-        self._working_network.trajects_no_check.discard(implement_traject)
 
         # check if the traject to be implemented can be implemented
         if station_pointer != None and implement_traject != None:
@@ -149,9 +229,8 @@ class Simulated_Annealing_Rail():
         else:
             empty_traject = empty_trajects[0]
 
-        # store the traject to implement in the empty traject an set it inside the trajects which can't be implemented
+        # store the traject to implement in the empty traject
         self._working_network.trajects[empty_traject] = traject_to_implement
-        self._working_network.trajects_no_check.add(empty_traject)
 
         # update the information
         self.update_traject(None, empty_traject)

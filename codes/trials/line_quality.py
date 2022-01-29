@@ -37,7 +37,7 @@ test_cases = [
 ]
 
 def score_calculation(trajects, path):
-    connections = load_connections(path / "data" / "ConnectiesHolland.csv")
+    connections = load_connections(path / "data" / "ConnectiesNationaal.csv")
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
@@ -63,6 +63,10 @@ def load_connections(file):
             line = line.split(',')
             line_tuple = tuple(line)
             connections.append(line_tuple)
+
+    # remove header in connections csv from list
+    connections.pop(0)
+    
     return connections
 
 # K = p*10000 - (T*100 + Min): quality of train trajects
@@ -79,9 +83,6 @@ def p(connections: list([str, str, int]), trajects: dict):
     for connection in connections:
         if connection_in_trajects(connection, trajects):
             count = count + 1
-    
-    # remove header in connections csv from list
-    connections.pop(0)
     
     total = len(connections)
     return count / total

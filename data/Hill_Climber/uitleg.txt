@@ -1,0 +1,7 @@
+output 1 = Holland = 1 iteratie
+output 2 = Holland = 1 iteratie
+output 3 = Nationaal = 10000 iteraties
+output 4 = Nationaal = 50000 iteraties
+output 5 = de geprobeerde verbeterde versie van output 4 = 100.000 iteraties
+            Blijft hetzelfde wat kan aangeven dat de top van de berg inderdaad is bereikt
+output 6 = Nog een poging met 100.000 iteraties en temperatuur van 3000.
