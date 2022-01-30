@@ -120,6 +120,9 @@ class Network():
                         # create the new traject
                         self.trajects[traject_number] = traject[:end_index + 1]
 
+                        # update traject information
+                        self.update_traject_info(traject_number)
+
                         # return the sliced out portion
                         return sliced_out, traject_number
 
@@ -130,5 +133,16 @@ class Network():
         self.trajects[traject_number] = traject[:last_two_index + 1]
         sliced_out = traject[last_two_index:]
 
+        # update traject information
+        self.update_traject_info(traject_number)
+
         # return the sliced out portion
         return sliced_out, traject_number
+
+    def update_traject_info(self, traject_number):
+        """
+        Updates the information of the given traject_number.
+        """
+        
+        self.update_stations_set(traject_number)
+        self.calc_duration(traject_number, update=True)
