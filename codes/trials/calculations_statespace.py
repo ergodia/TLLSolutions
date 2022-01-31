@@ -77,4 +77,10 @@ print('Opdracht 6:', result)
 r = 61
 n = 9
 
-print('State space:', no_order_repetition(r, n)*20)
+print('State space:', order_repetition(r, n)*20)
+
+# State space 2
+r = 13
+n = 61
+
+print('State space:', order_no_repetition(r, n)*20)
