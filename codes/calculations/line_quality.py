@@ -1,8 +1,8 @@
 """
 line_quality.py
 
-- Reads CSV file
-- Calculates the quality of the lines
+- reads CSV file
+- calculates the quality of the lines
 """
 
 import pandas as pd

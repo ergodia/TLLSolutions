@@ -1,24 +1,27 @@
+"""
+animation_trial.py
+
+- creates animation
+"""
+
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
  
  
-# creating a blank window
-# for the animation
+# creating a blank window for the animation
 fig = plt.figure()
 axis = plt.axes(xlim =(-50, 50),
                 ylim =(-50, 50))
  
 line, = axis.plot([], [], lw = 2)
  
-# what will our line dataset
-# contain?
+# what will our line dataset contain?
 def init():
     line.set_data([], [])
     return line,
  
-# initializing empty values
-# for x and y co-ordinates
+# initializing empty values for x and y co-ordinates
 xdata, ydata = [], []
  
 # animation function
