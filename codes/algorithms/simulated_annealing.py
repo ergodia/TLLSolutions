@@ -1,7 +1,7 @@
 import random
 import copy
 import math
-from ..trials.line_quality import K
+from ..calculations.line_quality import K
 
 from progress.bar import Bar
 

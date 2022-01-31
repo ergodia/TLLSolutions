@@ -9,33 +9,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# test cases to create a boxplot
-test_cases = [
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_2' : ["Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Amsterdam Zuid", "Schiphol Airport"],
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"]
-    },
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_2' : ["Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Amsterdam Zuid", "Schiphol Airport"]
-    },
-    {
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"]
-    },
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"]
-    },
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_2' : ["Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Amsterdam Zuid", "Schiphol Airport"],
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"],
-        'traject_4' : ["Alkmaar", "Hoorn", "Zaandam", "Beverwijk", "Haarlem", "Amsterdam Sloterdijk", "Amsterdam Centraal"]
-    }
-    
-]
-
 def score_calculation(trajects, path):
     connections = load_connections(path / "data" / "ConnectiesNationaal.csv")
     
@@ -43,7 +16,6 @@ def score_calculation(trajects, path):
     dataframe_rows = []
     for traject in range(len(trajects)):    
         dataframe_rows.append({ 'possibility': (traject+1), 'quality': K(connections, trajects[traject]) })
-        
         
     # create dataframe out of list with dictionaries and create barplot, save this barplot in barplot.png to look at data
     dataframe = pd.DataFrame(dataframe_rows)
@@ -114,14 +86,6 @@ def connection_equals_traject_part(connection, traject, i):
 def T(trajects:dict):
     return len(trajects)
 
-
-""" test if functions are working correctly with simplified example (can be removed after finished) """
-# connections = [('luca', 'pepijn', 100), ('monica', 'tjeerd', 200), ('isabel', 'job', 300)]
-# trajects = {'train_1': ['pepijn', 'luca'], 'train_2':['monica', 'tjeerd']}
-# print(p(connections, trajects))
-# print(Min(connections, trajects))
-# print(T(trajects))
-# print(K(connections, trajects))
 
 
 
