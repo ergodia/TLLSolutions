@@ -1,8 +1,8 @@
 """
 distance_table.py
 
-- Reads CSV file into a dataframe
-- Converts it to a distance table
+- Reads distance CSV file into a dataframe
+- Converts dataframe to a distance table
 - Saves results to CSV file
 
 """
