@@ -21,10 +21,17 @@ def traveling_salesman_score(iterations, datasheet):
     graph = Graph(stations_file, connections_file)
     
     scores = {}
+
+    if datasheet == "holland":
+        max_traject = 7
+        max_length = 120
+    else:
+        max_traject = 20
+        max_length = 180
     
     spinner = Spinner(f"Running Traveling Salesman {datasheet}")
     for iteration in range(iterations):
-        trajects, check = Traveling_Salesman_Rail(graph, 20, 180).run()
+        trajects, check = Traveling_Salesman_Rail(graph, max_traject, max_length).run()
 
         score = round(K(score_connections, trajects), 2)
         
