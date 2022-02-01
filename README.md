@@ -9,6 +9,8 @@ Studenten: Tim Mulder, Lieneke Floor - Barsukoff Poniatowsky & Luca Nederhorst
 
 Begeleiders: Joos & Charlotte
 
+![Voorbeeld project](data/Images/Graph_Nationaal_eerste_algoritme.png)
+
 
 **Doel van dit project:** het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwaliteit. Binnen het gegeven tijdsframe van 3 uur worden er een aantal trajecten uitgezet. Het maximaal toegelaten aantal trajecten is 20. Een traject is een route van sporen en stations waarover treinen heen en weer rijden. Een traject mag niet langer zijn dan het opgegeven tijdsframe.
 
@@ -41,8 +43,9 @@ De code van het simulated salesman algoritme is te vinden in codes/algorithms/si
 
 
 ## Gebruiksaanwijzing
+```
 TODO
-
+```
 
 ## Projectstructuur
 Het programma bestaat uit meerdere folders waarin verschillende aspecten van het project te vinden zijn. De folder 'codes' omvat alle code. Deze folder is ook weer onderverdeeld in verschillende typen code. De 'algorithms' folder omvat de verschillende algoritmes die de lijnvoeringen genereren, 'classes' omvat alle objecten die nodig zijn voor het project (bijv. stations, mogelijke verbindingen en nodes). Verder is er ook nog de trials folder waarin overige code, zoals de berekening van de kwaliteit of of berekening van de state-space, zijn opgeslagen. 
