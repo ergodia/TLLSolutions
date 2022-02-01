@@ -2,10 +2,10 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
-from codes.classes.network import Network
-from codes.classes.graph import Graph
-from codes.calculations.line_quality import K, load_connections
+from ..algorithms.simulated_annealing import Simulated_Annealing_Rail
+from ..classes.network import Network
+from ..classes.graph import Graph
+from ..calculations.line_quality import K, load_connections
 from pathlib import Path
 from progress.spinner import Spinner
 
