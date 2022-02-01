@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns; sns.set_theme()
 
 from ..algorithms.simulated_annealing import Simulated_Annealing_Rail
 from ..classes.network import Network
@@ -11,6 +12,7 @@ from progress.spinner import Spinner
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[1]
+sns.set_theme(style="whitegrid", palette="hls")
 
 
 def simulated_annealing_score(iterations, algorithm_iterations, temperature, datasheet):
@@ -35,7 +37,7 @@ def simulated_annealing_score(iterations, algorithm_iterations, temperature, dat
     
     data = pd.Series(scores)
     ax = data.plot.bar(x="score", y="amount")
-    plt.savefig(PATH / "data" / "experiment" / f"sa_{datasheet}")
+    plt.savefig(PATH / "data" / "experiment" / f"sa_{datasheet}", bbox_inches="tight", dpi=150)
     plt.close()
 
     return max(scores, key=scores.get)
@@ -57,7 +59,7 @@ def simulated_annealing_score_ot(algorithm_iterations, temperature, datasheet):
     data = pd.Series(scores)
 
     ax = data.plot.line(x="iteration", y="score")
-    plt.savefig(PATH / "data" / "experiment" / f"sa_overtime_{datasheet}")
+    plt.savefig(PATH / "data" / "experiment" / f"sa_overtime_{datasheet}", bbox_inches="tight", dpi=150)
     plt.close()
 
 

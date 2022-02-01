@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import collections
+import seaborn as sns; sns.set_theme()
 
 from ..algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
 from ..classes.graph import Graph
@@ -10,6 +11,8 @@ from pathlib import Path
 from progress.spinner import Spinner
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[1]
+sns.set_theme(style="whitegrid", palette="hls")
+
 
 def traveling_salesman_score(iterations, datasheet):
     stations_file, connections_file = data_files(datasheet)
@@ -35,7 +38,7 @@ def traveling_salesman_score(iterations, datasheet):
 
     data = pd.Series(scores)
     ax = data.plot.bar(x="score", y="amount")
-    plt.savefig(PATH / "data" / "experiment" / f"ts_{datasheet}")
+    plt.savefig(PATH / "data" / "experiment" / f"ts_{datasheet}", bbox_inches="tight", dpi=150)
     plt.close()
 
     return max(scores, key=scores.get)
