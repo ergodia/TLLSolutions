@@ -43,9 +43,21 @@ De code van het simulated salesman algoritme is te vinden in codes/algorithms/si
 
 
 ## Gebruiksaanwijzing
-```
-TODO
-```
+Het standaard programma ``main.py`` wordt gebruikt om de twee algoritmes aan te sturen. Dit werkt op de volgende manieren:
+Standaard wordt het ``traveling salesman`` algoritme uitgevoerd op de nationale data. Hiervoor moet alleen een output file name worden opgegeven.
+``python3 main.py output.csv`` voert dat uit.
+
+Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden.
+
+-a = algoritme: Opties: TS (Traveling Salesman), SA(Simulated Annealing)
+-d = datasheet: Opties: national, holland
+-tra = maximaal aantal trajecten
+-len = maximale lengte per traject
+-i = aantal verschillende iteraties dat moet worden uitgevoerd van een bepaald algoritme en daaruit een maximale score moet komen.
+
+Het programma ``main_experiment.py`` is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie ``get_all_combinations()``. 
+
+Uit het programma komen alle verschillende parameter combinaties met hun maximale score en de daarbij behorende grafieken.
 
 ## Projectstructuur
 Het programma bestaat uit meerdere folders waarin verschillende aspecten van het project te vinden zijn. De folder 'codes' omvat alle code. Deze folder is ook weer onderverdeeld in verschillende typen code. De 'algorithms' folder omvat de verschillende algoritmes die de lijnvoeringen genereren, 'classes' omvat alle objecten die nodig zijn voor het project (bijv. stations, mogelijke verbindingen en nodes). Verder is er ook nog de trials folder waarin overige code, zoals de berekening van de kwaliteit of of berekening van de state-space, zijn opgeslagen. 
