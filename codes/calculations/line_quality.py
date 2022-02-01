@@ -8,41 +8,8 @@ line_quality.py
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-<<<<<<< HEAD:codes/trials/line_quality.py
-# test cases to create a boxplot
-test_cases = [
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_2' : ["Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Amsterdam Zuid", "Schiphol Airport"],
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"]
-    },
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_2' : ["Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Amsterdam Zuid", "Schiphol Airport"]
-    },
-    {
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"]
-    },
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"]
-    },
-    {
-        'traject_1' : ["Beverwijk", "Castricum", "Alkmaar", "Hoorn", "Zaandam"],
-        'traject_2' : ["Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Amsterdam Zuid", "Schiphol Airport"],
-        'traject_3' : ["Rotterdam Alexander", "Gouda", "Alphen a/d Rijn", "Leiden Centraal", "Schiphol Airport", "Amsterdam Zuid"],
-        'traject_4' : ["Alkmaar", "Hoorn", "Zaandam", "Beverwijk", "Haarlem", "Amsterdam Sloterdijk", "Amsterdam Centraal"]
-    }
-    
-]
-
-def score_calculation(trajects, path, connections_file):
-    connections = load_connections(connections_file)
-=======
-def score_calculation(trajects, path):
-    connections = load_connections(path / "data" / "ConnectiesNationaal.csv")
->>>>>>> 6a5372e88727242475b644f8a49db39e2a09bf37:codes/calculations/line_quality.py
+def score_calculation(trajects, path, connection_file):
+    connections = load_connections(connection_file)
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
