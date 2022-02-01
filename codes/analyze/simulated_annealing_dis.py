@@ -10,10 +10,10 @@ from pathlib import Path
 from progress.spinner import Spinner
 
 
-PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[2]
+PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[1]
 SCORE_CONNECTIONS = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
 
-def main():
+def simulated_annealing_score():
     graph = Graph(PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv")
     base_network = Network(PATH / "data" / "output_nat.csv", graph.stations)
 
