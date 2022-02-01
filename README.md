@@ -9,6 +9,8 @@ Studenten: Tim Mulder, Lieneke Floor - Barsukoff Poniatowsky & Luca Nederhorst
 
 Begeleiders: Joos & Charlotte
 
+![Voorbeeld project](data/Images/Graph_Nationaal_eerste_algoritme.png)
+
 
 **Doel van dit project:** het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwaliteit. Binnen het gegeven tijdsframe van 3 uur worden er een aantal trajecten uitgezet. Het maximaal toegelaten aantal trajecten is 20. Een traject is een route van sporen en stations waarover treinen heen en weer rijden. Een traject mag niet langer zijn dan het opgegeven tijdsframe.
 
