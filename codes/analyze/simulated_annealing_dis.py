@@ -10,7 +10,7 @@ from pathlib import Path
 from progress.spinner import Spinner
 
 
-PATH = Path(os.path.dirname(os.path.realpath(__file__)))
+PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[2]
 SCORE_CONNECTIONS = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
 
 def main():
