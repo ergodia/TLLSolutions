@@ -124,7 +124,7 @@ def simulated_annealing(network, max_trajects, max_length, max_algorithm_iterati
 
     # run the algorithm for an amount of iterations and only save the best network
     for iteration in range(iterations):
-        network, score = Simulated_Annealing_Rail(base_network, max_length, max_trajects, max_algorithm_iterations, temperature, SCORE_CONNECTIONS).run()
+        network, score = Simulated_Annealing_Rail(base_network, max_length, max_trajects, max_algorithm_iterations, temperature, SCORE_CONNECTIONS).run(False)
 
         # save the network if the score is higher
         if score > best_score:

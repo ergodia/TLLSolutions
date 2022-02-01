@@ -24,7 +24,7 @@ def main():
     trajects = Network(PATH / "data" / "output_nat.csv", graph.stations)
     connections = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
     
-    trajects = Simulated_Annealing_Rail(trajects, 180, 22, 30000, 1500, connections).run()
+    trajects = Simulated_Annealing_Rail(trajects, 180, 22, 30000, 1500, connections).run(False)
 
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH)

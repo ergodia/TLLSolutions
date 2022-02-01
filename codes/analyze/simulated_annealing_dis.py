@@ -22,7 +22,7 @@ def simulated_annealing_score(iterations, algorithm_iterations, temperature):
         
     spinner = Spinner('Running')
     for iteration in range(iterations):
-        network, score = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, SCORE_CONNECTIONS).run()
+        network, score = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, SCORE_CONNECTIONS).run(False)
 
         if score in scores:
             scores[score] += 1
@@ -33,4 +33,16 @@ def simulated_annealing_score(iterations, algorithm_iterations, temperature):
     
     data = pd.Series(scores)
     ax = data.plot.bar(x="score", y="amount")
+    plt.show()
+
+
+def simulated_annealing_score_ot(algorithm_iterations, temperature):
+    graph = Graph(PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv")
+    base_network = Network(PATH / "data" / "output_nat.csv", graph.stations)
+
+    scores = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, SCORE_CONNECTIONS).run(True)
+
+    data = pd.Series(scores)
+
+    ax = data.plot.line(x="iteration", y="score")
     plt.show()

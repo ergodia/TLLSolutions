@@ -22,8 +22,9 @@ class Simulated_Annealing_Rail():
         self._current_temperature = start_temperature
         self._iterations = iterations
         self._all_connections = connections
+        self._scores_over_time = []
 
-    def run(self):
+    def run(self, over_time):
         """
         Runs the simulated annealing algortithm with the given information.
         """
@@ -40,8 +41,11 @@ class Simulated_Annealing_Rail():
             if check == None:
                 break
 
+            # update the score
+            self.update_score()
+
             # check if the maximum_traject number is not exceeded
-            # in that case just treat it as a worser case
+            # in that case just treat it as a worser solution
             if len(self._working_network.trajects) > self._maximum_trajects:
                 self._working_network = copy.deepcopy(self._accepted_network)
                 self.update_temperature()
@@ -49,9 +53,6 @@ class Simulated_Annealing_Rail():
                 # go to the next iteration
                 bar.next()
                 continue
-
-            # update the score
-            self.update_score()
 
             # reindex trajects
             self.reindex_trajects()
@@ -65,7 +66,10 @@ class Simulated_Annealing_Rail():
         bar.finish()
 
         # return the best network
-        return self._best_network.trajects, self._best_network.score
+        if over_time is True:
+            return self._scores_over_time
+        else:
+            return self._best_network.trajects, self._best_network.score
 
     def check_solution(self):
         """
@@ -88,6 +92,9 @@ class Simulated_Annealing_Rail():
         # check if the new network will be accepted on a random chance
         if random.random() < probability:
             self._accepted_network = copy.deepcopy(self._working_network)
+            
+            # add the score of the solution to the scores over time list
+            self._scores_over_time.append(self._accepted_network.score)
         else:
             self._working_network = copy.deepcopy(self._accepted_network)
 
