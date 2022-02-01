@@ -80,12 +80,6 @@ result = x-y
 
 print('Opdracht 6:', result)
 
-# state space of railNL
-r = 61
-n = 9
-
-print('State space:', order_repetition(r, n)*20)
-
 # state space 2 of railNL
 r = 13
 n = 61
