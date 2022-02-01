@@ -43,8 +43,9 @@ De code van het simulated salesman algoritme is te vinden in codes/algorithms/si
 
 
 ## Gebruiksaanwijzing
+```
 TODO
-
+```
 
 ## Projectstructuur
 Het programma bestaat uit meerdere folders waarin verschillende aspecten van het project te vinden zijn. De folder 'codes' omvat alle code. Deze folder is ook weer onderverdeeld in verschillende typen code. De 'algorithms' folder omvat de verschillende algoritmes die de lijnvoeringen genereren, 'classes' omvat alle objecten die nodig zijn voor het project (bijv. stations, mogelijke verbindingen en nodes). Verder is er ook nog de trials folder waarin overige code, zoals de berekening van de kwaliteit of of berekening van de state-space, zijn opgeslagen. 
