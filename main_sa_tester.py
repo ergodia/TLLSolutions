@@ -24,7 +24,7 @@ def main():
     trajects = Network(PATH / "data" / "output_nat.csv", graph.stations)
     connections = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
     
-    trajects = Simulated_Annealing_Rail(trajects, 180, 20, 100000, 3000, connections).run()
+    trajects = Simulated_Annealing_Rail(trajects, 180, 22, 30000, 1500, connections).run()
 
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH)
@@ -36,7 +36,7 @@ def main():
     output_data.reset_index(level=0, inplace=True)
     output_data.columns = ["train", "stations"]
     output_data = output_data.append({"train":"score", "stations": quality["quality"][0]}, ignore_index=True)
-    output_data.to_csv(PATH / "data" / "output_hc_5.csv", index=False)
+    output_data.to_csv(PATH / "data" / "output_hc.csv", index=False)
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 import random
 import copy
 import math
-from ..trials.line_quality import K
 
+from ..trials.line_quality import K
 from progress.bar import Bar
 
 
@@ -41,6 +41,9 @@ class Simulated_Annealing_Rail():
             if len(self._working_network.trajects) > self._maximum_trajects:
                 self._working_network = copy.deepcopy(self._accepted_network)
                 self.update_temperature()
+
+                # go to the next iteration
+                bar.next()
                 continue
 
             # update the score
@@ -58,7 +61,7 @@ class Simulated_Annealing_Rail():
         bar.finish()
 
         # return the best network
-        return self._best_network.trajects
+        return self._best_network.trajects, self._best_network.score
 
     def check_solution(self):
         """
