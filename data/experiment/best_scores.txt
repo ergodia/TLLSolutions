@@ -1,0 +1,4 @@
+holland SA max_score: 9119.0 / 1-10-1-10
+nationaal SA max_score: 6749.0 / 1-10-1-10
+holland TS max_score: 9019.0 / 1-10-1-10
+nationaal TS max_score: 6549.0 / 1-10-1-10

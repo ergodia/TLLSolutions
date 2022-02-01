@@ -14,7 +14,7 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[1]
 sns.set_theme(style="whitegrid", palette="hls")
 
 
-def traveling_salesman_score(iterations, datasheet):
+def traveling_salesman_score(iterations, datasheet, experiment):
     stations_file, connections_file = data_files(datasheet)
     score_connections = load_connections(connections_file)
 
@@ -45,8 +45,8 @@ def traveling_salesman_score(iterations, datasheet):
 
     data = pd.Series(scores)
     ax = data.plot.bar(x="score", y="amount")
-    plt.savefig(PATH / "data" / "experiment" / f"ts_{datasheet}", bbox_inches="tight", dpi=150)
-    plt.close()
+    plt.savefig(PATH / "data" / "experiment" / experiment / f"ts_{datasheet}", bbox_inches="tight", dpi=150)
+    plt.clf()
 
     return max(scores, key=scores.get)
 

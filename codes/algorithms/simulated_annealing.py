@@ -15,7 +15,6 @@ class Simulated_Annealing_Rail():
         self._best_network = copy.deepcopy(network)
         self._working_network = copy.deepcopy(network)
         self._accepted_network = copy.deepcopy(network)
-        self._no_starting_traject = set()
         self._maximum_track_time = maximum_track_time
         self._maximum_trajects = maximum_trajects
         self._start_temperature = start_temperature
@@ -180,7 +179,7 @@ class Simulated_Annealing_Rail():
         
         try:
             starting_traject = min((traject for traject in self._working_network.trajects_duration 
-                                if traject not in self._no_starting_traject), 
+                                if traject not in self._working_network.no_starting_traject), 
                                 key=self._working_network.trajects_duration.get)
             traject_to_implement = copy.deepcopy(self._working_network.trajects[starting_traject])
             
@@ -205,7 +204,7 @@ class Simulated_Annealing_Rail():
             sliced_out, original_traject_number = self.rearrange_tracks(original_traject_number, sliced_out)
             tries += 1
 
-            if tries == 100 and not sliced_out:
+            if tries == 100 and sliced_out:
                 sliced_out = self.place_sliced_element(sliced_out)
 
     def trajects_in_time(self, original_traject_number, sliced_out, tries):
@@ -219,7 +218,7 @@ class Simulated_Annealing_Rail():
             tries += 1
 
             # place the sliced out traject in its own traject after 100 iterations
-            if tries == 100 and not sliced_out:
+            if tries == 100 and sliced_out:
                 sliced_out = self.place_sliced_element(sliced_out)
 
             # check if there are more trajects not in time
@@ -266,7 +265,7 @@ class Simulated_Annealing_Rail():
         self.update_traject(None, empty_traject)
 
         # put this element in the set with trajects that must not be a starting traject
-        self._no_starting_traject.add(empty_traject)
+        self._working_network.no_starting_traject.add(empty_traject)
 
         # set traject_to_implement to None
         traject_to_implement = None
@@ -324,7 +323,7 @@ class Simulated_Annealing_Rail():
 
             # discard the implement_traject from the no starting traject set because
             # it can used again since it has more connections
-            self._no_starting_traject.discard(implement_traject)
+            self._working_network.no_starting_traject.discard(implement_traject)
       
             return station_pointer, implement_traject
 

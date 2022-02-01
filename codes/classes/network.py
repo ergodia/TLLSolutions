@@ -8,6 +8,7 @@ class Network():
         self.stations = stations
         self.score, self.trajects = self.load_trajects(trajects_csv)
         self.stations_traject = set()
+        self.no_starting_traject = set()
         self.create_stations_set()
         self.trajects_duration = {}
         self.calc_init_length_duration()
