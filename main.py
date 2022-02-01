@@ -14,7 +14,7 @@ from codes.classes.network import Network
 from codes.classes.stations import Stations
 from codes.classes.graph import Graph
 from codes.calculations.line_quality import score_calculation, K, load_connections
-from codes.load.graph import holland_graph, holland_animation
+from codes.load.graph import holland_graph
 from codes.classes.graph import Graph
 from codes.calculations.line_quality import score_calculation
 from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
@@ -49,7 +49,6 @@ def main(output, algorithm, datasheet, max_trajects, max_length, iterations):
     # create a graph of all the trajects
     data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
     holland_graph(PATH, data, stations.bbox_limits())
-    holland_animation(PATH, data, stations.bbox_limits())
     
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH, connections_file)
