@@ -11,18 +11,20 @@ from progress.spinner import Spinner
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__))).parents[1]
-SCORE_CONNECTIONS = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
 
-def simulated_annealing_score(iterations, algorithm_iterations, temperature):
-    graph = Graph(PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv")
-    base_network = Network(PATH / "data" / "output_nat.csv", graph.stations)
+
+def simulated_annealing_score(iterations, algorithm_iterations, temperature, datasheet):
+    stations_file, connections_file, network_file = data_files(datasheet)
+    score_connections = load_connections(connections_file)
+
+    graph = Graph(stations_file, connections_file)
+    base_network = Network(network_file, graph.stations)
 
     scores = {}
-
         
     spinner = Spinner('Running')
     for iteration in range(iterations):
-        network, score = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, SCORE_CONNECTIONS).run(False)
+        network, score = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, score_connections).run(False)
 
         if score in scores:
             scores[score] += 1
@@ -33,16 +35,39 @@ def simulated_annealing_score(iterations, algorithm_iterations, temperature):
     
     data = pd.Series(scores)
     ax = data.plot.bar(x="score", y="amount")
-    plt.show()
+    plt.savefig(PATH / "data" / "experiment" / f"sa_{datasheet}")
+    plt.close()
+
+    return max(scores, key=scores.get)
 
 
-def simulated_annealing_score_ot(algorithm_iterations, temperature):
-    graph = Graph(PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv")
-    base_network = Network(PATH / "data" / "output_nat.csv", graph.stations)
+def simulated_annealing_score_ot(algorithm_iterations, temperature, datasheet):
+    """
+    Runs the simulated annaealing algorithm 1 time and gives the accepted scores over time.
+    """
 
-    scores = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, SCORE_CONNECTIONS).run(True)
+    stations_file, connections_file, network_file = data_files(datasheet)
+    score_connections = load_connections(connections_file)
+
+    graph = Graph(stations_file, connections_file)
+    base_network = Network(network_file, graph.stations)
+
+    scores = Simulated_Annealing_Rail(base_network, 180, 20, algorithm_iterations, temperature, score_connections).run(True)
 
     data = pd.Series(scores)
 
     ax = data.plot.line(x="iteration", y="score")
-    plt.show()
+    plt.savefig(PATH / "data" / "experiment" / f"sa_overtime_{datasheet}")
+    plt.close()
+
+
+def data_files(datasheet):
+    """
+    Returns the datafiles based on the datasheet needed.
+    """
+    
+    if datasheet == "holland":
+        return (PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv", PATH / "data" / "output_hol.csv")
+
+    elif datasheet == "nationaal":
+        return (PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv", PATH / "data" / "output_nat.csv")

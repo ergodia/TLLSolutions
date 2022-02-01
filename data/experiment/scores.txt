@@ -1,0 +1,4 @@
+nationaal SA max_score: 6649.0
+nationaal TS max_score: 6449.0
+holland SA max_score: 9119.0
+holland TS max_score: 9119.0
