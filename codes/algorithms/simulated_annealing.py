@@ -198,7 +198,7 @@ class Simulated_Annealing_Rail():
             sliced_out, original_traject_number = self.rearrange_tracks(original_traject_number, sliced_out)
             tries += 1
 
-            if tries == 100:
+            if tries == 100 and not sliced_out:
                 sliced_out = self.place_sliced_element(sliced_out)
 
     def trajects_in_time(self, original_traject_number, sliced_out, tries):
@@ -212,7 +212,7 @@ class Simulated_Annealing_Rail():
             tries += 1
 
             # place the sliced out traject in its own traject after 100 iterations
-            if tries == 100:
+            if tries == 100 and not sliced_out:
                 sliced_out = self.place_sliced_element(sliced_out)
 
             # check if there are more trajects not in time
