@@ -12,9 +12,20 @@ from pathlib import Path
 from progress.bar import Bar
 from codes.classes.network import Network
 from codes.classes.stations import Stations
+<<<<<<< HEAD
 #from codes.trials.graph import holland_graph
 from codes.classes.graph import Graph
 from codes.trials.line_quality import score_calculation, K, load_connections
+=======
+<<<<<<< HEAD
+from codes.load.graph import holland_graph
+=======
+from codes.trials.graph import holland_graph
+from codes.trials.graph import holland_animation
+>>>>>>> 27d2938c64c7dec09f8692dbcda6e18326df7010
+from codes.classes.graph import Graph
+from codes.calculations.line_quality import score_calculation
+>>>>>>> 6a5372e88727242475b644f8a49db39e2a09bf37
 from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
 from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
 
@@ -45,8 +56,14 @@ def main(output, algorithm, datasheet, max_trajects, max_length, iterations):
         exit()
 
     # create a graph of all the trajects
+<<<<<<< HEAD
     # data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
     # holland_graph(PATH, data, stations.bbox_limits())
+=======
+    data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
+    holland_graph(PATH, data, stations.bbox_limits())
+    holland_animation(PATH, data, stations.bbox_limits())
+>>>>>>> 6a5372e88727242475b644f8a49db39e2a09bf37
     
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH, connections_file)

@@ -1,14 +1,15 @@
 """
 line_quality.py
 
-- Reads CSV file
-- Calculates the quality of the lines
+- reads CSV file
+- calculates the quality of the lines
 """
 
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
+<<<<<<< HEAD:codes/trials/line_quality.py
 # test cases to create a boxplot
 test_cases = [
     {
@@ -38,12 +39,15 @@ test_cases = [
 
 def score_calculation(trajects, path, connections_file):
     connections = load_connections(connections_file)
+=======
+def score_calculation(trajects, path):
+    connections = load_connections(path / "data" / "ConnectiesNationaal.csv")
+>>>>>>> 6a5372e88727242475b644f8a49db39e2a09bf37:codes/calculations/line_quality.py
     
     # create list to store dictionaries that contain possibility and quality
     dataframe_rows = []
     for traject in range(len(trajects)):    
         dataframe_rows.append({ 'possibility': (traject+1), 'quality': K(connections, trajects[traject]) })
-        
         
     # create dataframe out of list with dictionaries and create barplot, save this barplot in barplot.png to look at data
     dataframe = pd.DataFrame(dataframe_rows)
@@ -114,14 +118,6 @@ def connection_equals_traject_part(connection, traject, i):
 def T(trajects:dict):
     return len(trajects)
 
-
-""" test if functions are working correctly with simplified example (can be removed after finished) """
-# connections = [('luca', 'pepijn', 100), ('monica', 'tjeerd', 200), ('isabel', 'job', 300)]
-# trajects = {'train_1': ['pepijn', 'luca'], 'train_2':['monica', 'tjeerd']}
-# print(p(connections, trajects))
-# print(Min(connections, trajects))
-# print(T(trajects))
-# print(K(connections, trajects))
 
 
 

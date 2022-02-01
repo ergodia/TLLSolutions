@@ -10,7 +10,7 @@ import os
 import pandas as pd
 
 from pathlib import Path
-from codes.trials.line_quality import score_calculation, load_connections
+from codes.calculations.line_quality import score_calculation, load_connections
 from codes.classes.graph import Graph
 from codes.classes.network import Network
 from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
