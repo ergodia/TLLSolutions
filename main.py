@@ -108,7 +108,7 @@ def traveling_salesman(graph, max_trajects, max_length, iterations):
 
     bar.finish()
         
-    return best_network    
+    return best_network
 
 
 def simulated_annealing(network, max_trajects, max_length, max_algorithm_iterations, temperature, iterations):
@@ -120,7 +120,7 @@ def simulated_annealing(network, max_trajects, max_length, max_algorithm_iterati
     base_network = copy.deepcopy(network)
     
     # start the bar progress bar
-    bar = Bar("Progress Traveling_Salesman", max=iterations)
+    bar = Bar("Progress Simulated Annealing", max=iterations)
 
     # run the algorithm for an amount of iterations and only save the best network
     for iteration in range(iterations):

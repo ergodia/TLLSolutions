@@ -34,7 +34,11 @@ class Simulated_Annealing_Rail():
         # go through the given iterations
         for iteration in range(self._iterations):
             # change the solution
-            self.change_solution()
+            check = self.change_solution()
+
+            # stop the iterations if the solution can't be changed
+            if check == None:
+                break
 
             # check if the maximum_traject number is not exceeded
             # in that case just treat it as a worser case
@@ -140,6 +144,10 @@ class Simulated_Annealing_Rail():
         # choose the shortest traject
         original_traject_number, traject_to_implement = self.get_starting_traject()
 
+        # if no starting traject can be arranged then return
+        if original_traject_number is None and traject_to_implement is None:
+            return None
+
         # rearrange the tracks and store the sliced_out portion with its traject where it came from and set it aside
         sliced_out, original_traject_number = self.rearrange_tracks(original_traject_number, traject_to_implement)
 
@@ -156,23 +164,29 @@ class Simulated_Annealing_Rail():
 
         self.trajects_in_time(original_traject_number, sliced_out, tries)
 
+        return "Done"
+
     def get_starting_traject(self):
         """
         Returns the starting traject for the beginning of the change solution.
         """
         
-        starting_traject = min((traject for traject in self._working_network.trajects_duration 
-                               if traject not in self._no_starting_traject), 
-                               key=self._working_network.trajects_duration.get)
-        traject_to_implement = copy.deepcopy(self._working_network.trajects[starting_traject])
-        
-        # clear the traject that will be used
-        self._working_network.trajects[starting_traject].clear()
+        try:
+            starting_traject = min((traject for traject in self._working_network.trajects_duration 
+                                if traject not in self._no_starting_traject), 
+                                key=self._working_network.trajects_duration.get)
+            traject_to_implement = copy.deepcopy(self._working_network.trajects[starting_traject])
+            
+            # clear the traject that will be used
+            self._working_network.trajects[starting_traject].clear()
 
-        # update the traject information
-        self.update_traject(None, starting_traject)
+            # update the traject information
+            self.update_traject(None, starting_traject)
 
-        return starting_traject, traject_to_implement
+            return starting_traject, traject_to_implement
+        except Exception:
+            return None, None
+
 
     def process_slices(self, original_traject_number, sliced_out, tries):
         """
