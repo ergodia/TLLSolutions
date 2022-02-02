@@ -84,4 +84,4 @@ De folder `'data'` omvat alle input- en outputfiles die worden gebruikt en worde
 
 ## Acknowledgements
 
-Begeleiders: Joos & Charlotte
+**Mentoren:** Joos Akkerman & Charlotte Lafage

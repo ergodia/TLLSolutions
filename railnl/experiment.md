@@ -1,5 +1,11 @@
 # Experiment
 
+## Doel van het experiment
+
+De uitdaging bij dit vak is om de case zo goed mogleijk op te lossen, daarbij is het belangrijk op wat voor manier je de oplossing vindt. Om achter de juiste oplossing te komen hebben we meerdere algoritmes geschreven. In dit document geven we de resultaten en een analyse van het experiment.
+
+In de folder "experiment" `../data/experiment/` is de distributie opgeslagen.
+
 ## Eerste Analyse:
 ### Kwaliteit Traveling Salesman en Simulated Annealing
 
