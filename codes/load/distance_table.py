@@ -8,11 +8,11 @@ distance_table.py
 
 import pandas as pd
 
-# read data
-df_1 = pd.read_csv( '../../data/ConnectiesNationaal.csv')
+# read data from csv
+df_1 = pd.read_csv('../../data/ConnectiesNationaal.csv')
 
 # rename columns
-df_2 = df_1.rename(columns={'station1': 'station2', 'station2': 'station1'} )
+df_2 = df_1.rename(columns={'station1': 'station2', 'station2': 'station1'})
 df_2 = df_2[['station1', 'station2', 'distance']]
 
 # concat dataframes
@@ -24,15 +24,10 @@ matrix_df = result.pivot_table(index='station1', columns='station2', values='dis
 
 # add column with number of connections per station
 matrix_df['connections'] = matrix_df.count()
-matrix_df.fillna(0, inplace =True)
-
-print(matrix_df)
+matrix_df.fillna(0, inplace=True)
 
 # calculate total connections
 total = matrix_df['connections'].sum()
 
-# divide total by 2 (they occur twice in the table)
-print('Aantal connections:', total/2)
-
 # write dataframe into CSV file
-matrix_df.to_csv('../../data/DistanceTable_NL.csv')
+matrix_df.to_csv('../../data/nationaal_output/DistanceTable_NL.csv')
