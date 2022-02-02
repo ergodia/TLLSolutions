@@ -18,6 +18,8 @@ Het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwal
 
 ![Voorbeeld project](data/images/Graph_Nationaal_eerste_algoritme.png)
 
+*Figuur 1. Een voorbeeld van de lijnvoering nationaal*
+
 ## Belangrijke begrippen
 - **Traject**: *Trein X: Amsterdam Centraal -> Amsterdam Sloterdijk -> Haarlem --> Leiden Centraal* 
 - **Verbinding**: *treinstation A -> treinstation B*
@@ -38,16 +40,19 @@ De code van het traveling salesman algoritme is te vinden in [traveling_salesman
 
 <img src="data/images/traveling_salesman_flowchart.png" width="750">
 
-
+*Figuur 2. Een flowchart van het Traveling Salesman algoritme*
 ## Beschrijving simulated annealing algoritme
 De code van het simulated salesman algoritme is te vinden in [simulated_annealing.py](codes/algorithms/simulated_annealing.py). In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
 
 <img src="data/images/simulated_annealing_flowchart.png" width="750">
 
+*Figuur 3. Een flowchart van het Simulated Annealing algoritme*
 ## Gebruik
 In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze kunnen geinstalleerd worden via pip via de volgende instructie:
 
-``pip install -r requirements.txt``
+```
+pip install -r requirements.txt
+```
 
 Het standaard programma [main.py](main.py) wordt gebruikt om de twee algoritmes aan te sturen. Dit werkt op de volgende manieren:
 Standaard wordt het [traveling salesman](codes/algorithms/traveling_salesman_rail.py) algoritme uitgevoerd op de nationale data. Hiervoor hoeft alleen het volgende instructie worden uitgevoerd:
@@ -66,7 +71,7 @@ Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden
 Een voorbeeld om dit uit te voeren is:
 
 ```
-python3 main.py TS national 20 13 5
+python3 main_experiment.py
 ```
 
 Het programma [main_experiment.py](main_experiment.py) is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie `'get_all_combinations()'`.
