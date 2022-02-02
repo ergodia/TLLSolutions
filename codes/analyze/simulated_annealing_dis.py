@@ -16,6 +16,10 @@ sns.set_theme(style="whitegrid", palette="hls")
 
 
 def simulated_annealing_score(iterations, algorithm_iterations, temperature, datasheet, experiment):
+    """
+    Generates the highest score and graph over a couple of simulated annealing iterations. 
+    """
+    
     stations_file, connections_file, network_file = data_files(datasheet)
     score_connections = load_connections(connections_file)
 
@@ -83,7 +87,11 @@ def data_files(datasheet):
     """
     
     if datasheet == "holland":
-        return (PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv", PATH / "data" / "output_hol.csv")
+        return (PATH / "data" / "StationsHolland.csv", 
+                PATH / "data" / "ConnectiesHolland.csv", 
+                PATH / "data" / "holland_output" / "output_TS_holland.csv")
 
     elif datasheet == "nationaal":
-        return (PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv", PATH / "data" / "output_nat.csv")
+        return (PATH / "data" / "StationsNationaal.csv", 
+                PATH / "data" / "ConnectiesNationaal.csv", 
+                PATH / "data" / "nationaal_output" / "output_TS_nationaal.csv")

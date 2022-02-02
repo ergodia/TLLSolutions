@@ -1,3 +1,14 @@
+"""
+TTL Solutions
+baseline.py
+
+This file contains the class to run an earlier version of the traveling salesman
+algorithm.
+
+It is important to note that this algorithm does not utilise all the connections
+of a certain network.
+"""
+
 import copy
 import random
 
@@ -15,10 +26,10 @@ class Traveling_Salesman():
         """
         Runs the traveling salesman algortithm with the given information
         """
-        
+
         # initialize the initial values for this algorithm
         total_traject_time = 0
-        
+
         # create the needed amount of trajects
         for traject in range(self._maximum_trajects):
             # pick a random starting point from all the stations
@@ -26,7 +37,7 @@ class Traveling_Salesman():
 
             # if there is not suitable starting point anymore then stop the loop
             # because no suitable trajects can be made anymore
-            if station_pointer == None:
+            if station_pointer is None:
                 break
 
             # begin with the start of a new traject and add it to the already visited
@@ -34,24 +45,24 @@ class Traveling_Salesman():
             self._already_visited.add(station_pointer)
 
             # create the connections of the traject
-            while True:    
-                # retrieve the closest station and the travel time 
+            while True:
+                # retrieve the closest station and the travel time
                 closest_station = self.closest_station(station_pointer)
-                
+
                 # check if the added travel time doesn't exceed the maximum traject time
                 # if this is true then the traject is finished so we go to the next
                 # herefore we need to set the total_traject_time back to 0
                 # the same will be done if there isn't a suitable connection anymore
-                if closest_station == None or total_traject_time + closest_station["travel_time"] > self._maximum_time:
+                if closest_station is None or total_traject_time + closest_station["travel_time"] > self._maximum_time:
                     total_traject_time = 0
                     break
-                
+
                 # add the station to the traject
                 self.add_station(traject, closest_station["name"])
 
                 # add the travel time to the total_traject_time
                 total_traject_time += closest_station["travel_time"]
-                
+
                 # delete the previous station from the dict
                 # and set the current pointer to the closest station
                 del self._stations[station_pointer]
@@ -64,7 +75,7 @@ class Traveling_Salesman():
         """
         Adds a station to the given traject and already visited.
         """
-        
+
         self._trajects[f"train {traject}"].append(station)
         self._already_visited.add(station)
 
@@ -85,10 +96,10 @@ class Traveling_Salesman():
             return starting_point
 
         # if there are no connections then return the first available station with connections
-        for station in list(stations): 
+        for station in list(stations):
             # check if the station has connections to stations already visited
             self.check_visited(self._stations[station].connections)
-            
+
             if self._stations[station].connections:
                 return station
 
@@ -111,9 +122,9 @@ class Traveling_Salesman():
         if not connections:
             del self._stations[station]
             self._already_visited.add(station)
-            
+
             return None
-        
+
         # retrieve the closest connected station
         closest_station = min(connections, key=connections.get)
 
@@ -121,7 +132,7 @@ class Traveling_Salesman():
         travel_time = connections[closest_station]
 
         return {"name": closest_station, "travel_time": travel_time}
- 
+
     def check_visited(self, connections):
         """
         Checks if there are any connections to stations that already have been visted.

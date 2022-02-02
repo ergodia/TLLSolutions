@@ -1,3 +1,14 @@
+"""
+TTL Solutions
+baseline.py
+
+This file contains the class to run the Simulated Annealing algorithm and
+the steps to change the solution.
+
+It needs a network created by the traveling salesman algorithm loaded in the network
+class see classes/network.py.
+"""
+
 import random
 import copy
 import math
@@ -37,7 +48,7 @@ class Simulated_Annealing_Rail():
             check = self.change_solution()
 
             # stop the iterations if the solution can't be changed
-            if check == None:
+            if check is None:
                 break
 
             # update the score
@@ -80,7 +91,7 @@ class Simulated_Annealing_Rail():
 
         # calculate the probability of accepting the new network
         delta = old_score - new_score
-    
+
         # check if the delta is equal to 0
         # this will be treated as a small deterioration so the delta will be equal to 1
         if delta == 0:
@@ -91,7 +102,7 @@ class Simulated_Annealing_Rail():
         # check if the new network will be accepted on a random chance
         if random.random() < probability:
             self._accepted_network = copy.deepcopy(self._working_network)
-            
+
             # add the score of the solution to the scores over time list
             self._scores_over_time.append(self._accepted_network.score)
         else:
@@ -100,10 +111,9 @@ class Simulated_Annealing_Rail():
         # check if the accepted_network score is higher than the best network
         if self._accepted_network.score > self._best_network.score:
             self._best_network = copy.deepcopy(self._accepted_network)
-        
+
         # update the temperature
         self.update_temperature()
-
 
     def update_score(self):
         """
@@ -111,7 +121,6 @@ class Simulated_Annealing_Rail():
         """
 
         self._working_network.score = K(self._all_connections, self._working_network.trajects)
-
 
     def update_temperature(self):
         """
@@ -135,7 +144,7 @@ class Simulated_Annealing_Rail():
             del self._working_network.trajects[traject]
 
         # reindex the trajects
-        self._working_network.trajects = {f"train {(index + 1)}" :self._working_network.trajects[traject]
+        self._working_network.trajects = {f"train {(index + 1)}": self._working_network.trajects[traject]
                                           for index, traject in enumerate(self._working_network.trajects)}
 
         # update all the traject information
@@ -176,13 +185,13 @@ class Simulated_Annealing_Rail():
         """
         Returns the starting traject for the beginning of the change solution.
         """
-        
+
         try:
-            starting_traject = min((traject for traject in self._working_network.trajects_duration 
-                                if traject not in self._working_network.no_starting_traject), 
-                                key=self._working_network.trajects_duration.get)
+            starting_traject = min((traject for traject in self._working_network.trajects_duration
+                                    if traject not in self._working_network.no_starting_traject),
+                                   key=self._working_network.trajects_duration.get)
             traject_to_implement = copy.deepcopy(self._working_network.trajects[starting_traject])
-            
+
             # clear the traject that will be used
             self._working_network.trajects[starting_traject].clear()
 
@@ -193,14 +202,13 @@ class Simulated_Annealing_Rail():
         except Exception:
             return None, None
 
-
     def process_slices(self, original_traject_number, sliced_out, tries):
         """
         Processes slices.
         This may be done for 100 times.
         """
 
-        while sliced_out != None:
+        while sliced_out is not None:
             sliced_out, original_traject_number = self.rearrange_tracks(original_traject_number, sliced_out)
             tries += 1
 
@@ -212,8 +220,8 @@ class Simulated_Annealing_Rail():
         Makes sure that all trajects are within time.
         This may be done for 100 times.
         """
-        
-        while sliced_out != None:
+
+        while sliced_out is not None:
             sliced_out, original_traject_number = self.rearrange_tracks(original_traject_number, sliced_out)
             tries += 1
 
@@ -222,9 +230,9 @@ class Simulated_Annealing_Rail():
                 sliced_out = self.place_sliced_element(sliced_out)
 
             # check if there are more trajects not in time
-            if sliced_out == None:
+            if sliced_out is None:
                 sliced_out, original_traject_number = self._working_network.make_traject_to_spec(self._maximum_track_time)
-                if sliced_out != None:
+                if sliced_out is not None:
                     tries = 0
 
     def rearrange_tracks(self, original_traject_number, traject_to_implement):
@@ -232,12 +240,12 @@ class Simulated_Annealing_Rail():
         Rearanges the tracks and return the bit, if any, that has been
         sliced out.
         """
-        
+
         # get the station_pointer (station which will be the head) and implement_traject for the sliced_out bit
         station_pointer, implement_traject = self.get_implement_traject(traject_to_implement, original_traject_number)
 
         # check if the traject to be implemented can be implemented
-        if station_pointer != None and implement_traject != None:
+        if station_pointer is not None and implement_traject is not None:
             traject_to_implement, original_traject_number = self.implement_trajects(traject_to_implement, original_traject_number, station_pointer, implement_traject)
         else:
             traject_to_implement = self.place_sliced_element(traject_to_implement)
@@ -248,9 +256,9 @@ class Simulated_Annealing_Rail():
         """
         Places sliced element in an empty traject.
         """
-        
+
         # retrieve the first best empty traject
-        empty_trajects = [traject for traject in self._working_network.trajects 
+        empty_trajects = [traject for traject in self._working_network.trajects
                           if self._working_network.trajects[traject] == []]
 
         if not empty_trajects:
@@ -269,18 +277,18 @@ class Simulated_Annealing_Rail():
 
         # set traject_to_implement to None
         traject_to_implement = None
-        
+
         return traject_to_implement
 
     def update_traject(self, original_traject_number, implement_traject):
         """
         Updates the given trajects information.
         """
-        
+
         # clear the original traject if this is used and update the traject_duration/length and stations_set
-        if original_traject_number != None:
+        if original_traject_number is not None:
             self._working_network.update_traject_info(original_traject_number)
-        
+
         # update the traject_duration/length and update the stations_set of the implement traject
         self._working_network.update_traject_info(implement_traject)
 
@@ -288,12 +296,12 @@ class Simulated_Annealing_Rail():
         """
         Retrieves a traject where the given traject can be implemented.
         """
-        
+
         # get the tracks where the station_pointer is present
         # if not found then take a look at the other side
         # choose which side will be searched first by choosing to reverse the list or not
         to_reverse = random.choice([True, False])
-        
+
         # 0 means the beginning of the traject and -1 the end of the traject
         sides = [0, -1]
 
@@ -304,25 +312,25 @@ class Simulated_Annealing_Rail():
         for side in sides:
             # get the station at a side
             station_pointer = traject_to_implement[side]
-            
+
             # check in which trajects the station is also present
-            station_pressence = {traject for traject in self._working_network.stations_traject 
-                                if station_pointer in self._working_network.stations_traject[traject]}
-            
+            station_pressence = {traject for traject in self._working_network.stations_traject
+                                 if station_pointer in self._working_network.stations_traject[traject]}
+
             # discard the original traject from the list
             station_pressence.discard(original_traject_number)
 
             # check if the station_pressence is empty and continue if so
             if not station_pressence:
                 continue
-            
+
             # choose a random traject from the trajact where the station is present
             implement_traject = random.choice(list(station_pressence))
 
             # discard the implement_traject from the no starting traject set because
             # it can used again since it has more connections
             self._working_network.no_starting_traject.discard(implement_traject)
-      
+
             return station_pointer, implement_traject
 
         # return None if there is no suitable traject
@@ -330,10 +338,10 @@ class Simulated_Annealing_Rail():
 
     def implement_trajects(self, old_traject, original_traject_number, station_pointer, implement_traject):
         """
-        Implements trajects in other trajects. 
+        Implements trajects in other trajects.
         Chooces randomly between before or after a chosen traject.
         """
-        
+
         # get the index number of the station_pointer in the implement_traject
         index = self._working_network.trajects[implement_traject].index(station_pointer)
 
@@ -344,22 +352,22 @@ class Simulated_Annealing_Rail():
             # check if the traject is in the right orientation
             if old_traject[-1] != station_pointer:
                 old_traject.reverse()
-            
+
             # slice a bit out to make place for the new bit
             sliced_out = self._working_network.trajects[implement_traject][:index + 1]
             left_over = self._working_network.trajects[implement_traject][index + 1:]
-            
+
             # add the new bid to the traject
             self._working_network.trajects[implement_traject] = old_traject + left_over
         else:
             # check if the traject is in the right orientation
             if old_traject[0] != station_pointer:
                 old_traject.reverse()
-            
+
             # slice a bit out to make place for the new bit
             sliced_out = self._working_network.trajects[implement_traject][index:]
             left_over = self._working_network.trajects[implement_traject][:index]
-            
+
             # add the new bid to the traject
             self._working_network.trajects[implement_traject] = left_over + old_traject
 
