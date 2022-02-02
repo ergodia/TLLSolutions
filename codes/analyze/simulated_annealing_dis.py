@@ -15,15 +15,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set_theme()
 
 from ..algorithms.simulated_annealing import Simulated_Annealing_Rail
-<<<<<<< HEAD
 from ..help_classes.network import Network
 from ..help_classes.graph import Graph
-from ..calculations.line_quality import K, load_connections
-=======
-from ..classes.network import Network
-from ..classes.graph import Graph
 from ..calculations.line_quality import load_connections
->>>>>>> fe8166922b92449d1ae9c788bf8da6e13eff114e
 from pathlib import Path
 
 
