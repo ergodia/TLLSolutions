@@ -5,6 +5,12 @@ Opleiding: Minor Programmeren
 
 Vak: Programmeertheorie
 
+## Authors
+
+- [@Tim Mulder](https://github.com/ergodia)
+- [@Luca Nederhorst](https://github.com/Lepel1998)
+
+
 Studenten: Tim Mulder, Lieneke Floor - Barsukoff Poniatowsky & Luca Nederhorst
 
 Begeleiders: Joos & Charlotte
@@ -31,13 +37,13 @@ Dit algoritme kiest eerst een random startpunt (startstaion). Vanuit dit station
 
 
 ## Beschrijving traveling salesman algoritme 
-De code van het traveling salesman algoritme is te vinden in codes/algorithms/traveling_salesman_rail.py. Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
+De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](codes/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
 
 <img src="data/Images/traveling_salesman_flowchart.png" width="750">
 
 
-## Beschrijving simulated annealing algoritme (codes/algorithms/simulated_annealing.py)
-De code van het simulated salesman algoritme is te vinden in codes/algorithms/simulated_annealing.py. In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
+## Beschrijving simulated annealing algoritme
+De code van het simulated salesman algoritme is te vinden in [simulated_annealing.py](codes/algorithms/simulated_annealing.py). In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
 
 <img src="data/Images/simulated_annealing_flowchart.png" width="750">
 
