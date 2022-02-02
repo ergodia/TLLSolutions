@@ -1,6 +1,6 @@
 # Codes
 
-De folder **codes** is onderverdeeld in algoritmes, analyse, berekeningen, classes en een loader.
+De folder **codes** is onderverdeeld in algoritmes, analyse, berekeningen, classes en hulp-files.
 
 In onderstaande uitleg wordt een beschrijving van de inhoud per folder gegeven.
 
@@ -29,7 +29,7 @@ In onderstaande uitleg wordt een beschrijving van de inhoud per folder gegeven.
 - `line_quality.py` berekent de kwaliteit van de lijnvoering.
 
 
-## classes
+## help_classes
 ### Folder met files met classes die stations inladen en knooppunten verbinden:
 
 - `graph.py` is een file om een graaf te maken met alle verbindingen
@@ -37,11 +37,8 @@ In onderstaande uitleg wordt een beschrijving van de inhoud per folder gegeven.
 - `nodes.py` bevat de knooppunten die zich in de graf bevinden
 - `stations.py` laad het station bestand in voor de grafieken
 
-## load
+## help_functions
 ### Folder met files om afstandtabel en visualisatie te maken:
 
 - `distance_table.py` maakt een afstandstabel waarin de connecties goed af te lezen zijn
 - `visualize_graph.py` maakt een visualisatie van alle trajecten op de kaart van Nederland
-
-
-
