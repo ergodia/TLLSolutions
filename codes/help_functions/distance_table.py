@@ -1,12 +1,12 @@
 """
+TLL Solutions
 distance_table.py
 
-- reads distance CSV file into a dataframe
-- converts dataframe to a distance table
-- saves results to CSV file
+Reads the connections csv file into a dataframe and converts it to a distance table.
 """
 
 import pandas as pd
+
 
 # read data from csv
 df_1 = pd.read_csv('../../data/ConnectiesNationaal.csv')

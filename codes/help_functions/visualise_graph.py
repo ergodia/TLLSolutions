@@ -1,9 +1,9 @@
 """
+TLL Solutions
 visualize_graph.py
 
-- reads map of background
-- plot linemarkers of trajects
-- saves result to png file
+Uses a given network to create a visual graph with all the trajects
+on a Dutch map.
 """
 
 import matplotlib.pyplot as plt

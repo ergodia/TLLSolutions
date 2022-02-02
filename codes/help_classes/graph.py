@@ -1,9 +1,10 @@
 """
+TLL Solutions
 graph.py
 
-- graph class
-- loads stations and connections
-- calculate the number of connections
+- Graph class.
+- Loads stations (see nodes.py) and connections into a graph.
+- Calculates the number of connections per station.
 """
 
 import csv

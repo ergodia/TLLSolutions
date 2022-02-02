@@ -1,11 +1,12 @@
 """
+TLL Solutions
 network.py
 
-- network class
-- loads trajects into a dictionary
-- calculates length and duration
-- slices trajects
-- updates the information of given traject
+Network Class
+- loads trajects from a csv file into a dictionary
+- calculates the length and duration of each traject.
+- makes trajects to spec with the given maximum_traject_length
+- updates the length of each given traject.
 """
 
 import csv
