@@ -9,7 +9,7 @@ Studenten: Tim Mulder, Lieneke Floor - Barsukoff Poniatowsky & Luca Nederhorst
 
 Begeleiders: Joos & Charlotte
 
-![Voorbeeld project](data/Images/Graph_Nationaal_eerste_algoritme.png)
+![Voorbeeld project](data/images/Graph_Nationaal_eerste_algoritme.png)
 
 
 **Doel van dit project:** het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwaliteit. Binnen het gegeven tijdsframe van 3 uur worden er een aantal trajecten uitgezet. Het maximaal toegelaten aantal trajecten is 20. Een traject is een route van sporen en stations waarover treinen heen en weer rijden. Een traject mag niet langer zijn dan het opgegeven tijdsframe.
@@ -33,13 +33,13 @@ Dit algoritme kiest eerst een random startpunt (startstaion). Vanuit dit station
 ## Beschrijving traveling salesman algoritme 
 De code van het traveling salesman algoritme is te vinden in codes/algorithms/traveling_salesman_rail.py. Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
 
-<img src="data/Images/traveling_salesman_flowchart.png" width="750">
+<img src="data/images/traveling_salesman_flowchart.png" width="750">
 
 
 ## Beschrijving simulated annealing algoritme (codes/algorithms/simulated_annealing.py)
 De code van het simulated salesman algoritme is te vinden in codes/algorithms/simulated_annealing.py. In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
 
-<img src="data/Images/simulated_annealing_flowchart.png" width="750">
+<img src="data/images/simulated_annealing_flowchart.png" width="750">
 
 ## Gebruik
 In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
@@ -47,8 +47,8 @@ In requirements.txt staan alle benodigde packages om de code succesvol te draaie
 ``pip install -r requirements.txt``
 
 Het standaard programma ``main.py`` wordt gebruikt om de twee algoritmes aan te sturen. Dit werkt op de volgende manieren:
-Standaard wordt het ``traveling salesman`` algoritme uitgevoerd op de nationale data. Hiervoor moet alleen een output file name worden opgegeven.
-``python3 main.py output.csv`` voert dat uit.
+Standaard wordt het ``traveling salesman`` algoritme uitgevoerd op de nationale data. Hiervoor hoeft alleen het volgende worden uitgevoerd.
+``python3 main.py``.
 
 Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden.
 

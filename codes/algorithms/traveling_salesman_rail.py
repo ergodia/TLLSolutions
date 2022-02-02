@@ -30,9 +30,6 @@ class Traveling_Salesman_Rail():
         # this will be the case if the number of connections is more or equal to 3
         # also set the number of visitations to 0 for later purposes
 
-        # VERANDERD NAAR 2 I.V.M stations met twee connecties die niet meer bezocht werden als ze werden gebruikt als
-        # eindstation
-
         more_connections_allowed = {station for station in connections if connections[station] >= 2}
 
         return connections, more_connections_allowed

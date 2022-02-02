@@ -11,7 +11,6 @@ class Traveling_Salesman():
         self._already_visited = set()
         self._trajects = {}
 
-
     def run(self):
         """
         Runs the traveling salesman algortithm with the given information
@@ -61,7 +60,6 @@ class Traveling_Salesman():
         # return the trajects
         return self._trajects
 
-
     def add_station(self, traject, station):
         """
         Adds a station to the given traject and already visited.
@@ -69,7 +67,6 @@ class Traveling_Salesman():
         
         self._trajects[f"train {traject}"].append(station)
         self._already_visited.add(station)
-
 
     def starting_point(self, stations):
         """
@@ -98,7 +95,6 @@ class Traveling_Salesman():
         # return None if there are no suitable starting point
         return None
 
-
     def closest_station(self, station):
         """
         Returns the closest connected station of the current station and the travel time between them.
@@ -126,7 +122,6 @@ class Traveling_Salesman():
 
         return {"name": closest_station, "travel_time": travel_time}
  
-
     def check_visited(self, connections):
         """
         Checks if there are any connections to stations that already have been visted.

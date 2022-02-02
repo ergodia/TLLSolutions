@@ -4,12 +4,11 @@ stations.py
 """
 
 import pandas as pd
-from pandas.core.frame import DataFrame
 
 
 class Stations():
     """
-    
+    Loads the stations for integration into a network graph. 
     """
     
     def __init__(self, input_csv):
@@ -18,8 +17,7 @@ class Stations():
         """
         
         self._stations = self.load_stations(input_csv)
-
-    
+ 
     def load_stations(self, input_csv):
         """
         The stations csv file will be loaded here into a dataframe.
@@ -30,8 +28,7 @@ class Stations():
         
         return read_data
 
-
-    def data_from_stations(self, station_list: list) -> DataFrame:
+    def data_from_stations(self, station_list: list) -> pd.DataFrame:
         """
         Returns a Dataframe with the longitude and latitude for the stations in a given order.
         """
@@ -41,17 +38,12 @@ class Stations():
 
         return station_data
 
-
     def bbox_limits(self):
         """
         Returns the bbox limits for the drawing of the graph.
         """
-
-        # return ((self._stations.y.min() - 1), (self._stations.y.max() + 1),      
-        #  (self._stations.x.min() - 1), (self._stations.x.max() + 1))
         
         return ((3.000), (7.500), (50.500), (54.000))
-
 
     def data(self):
         """
