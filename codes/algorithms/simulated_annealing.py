@@ -6,7 +6,7 @@ This file contains the class to run the Simulated Annealing algorithm and
 the steps to change the solution.
 
 It needs a network created by the traveling salesman algorithm loaded in the network
-class see classes/network.py.
+class. (See classes/network.py.)
 """
 
 import random
