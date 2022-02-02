@@ -29,7 +29,7 @@ from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
 
 
 PATH = Path(os.path.dirname(os.path.realpath(__file__)))
-SCORE_CONNECTIONS = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
+SCORE_CONNECTIONS = load_connections(PATH / "data" / "input" / "ConnectiesNationaal.csv")
 
 
 def main(algorithm, datasheet, max_trajects, max_length, iterations):
@@ -58,7 +58,7 @@ def main(algorithm, datasheet, max_trajects, max_length, iterations):
     holland_graph(PATH, data, stations.bbox_limits(), output, algorithm)
 
     # calculate the quality of the trajects
-    quality = score_calculation([trajects], PATH, connections_file)
+    quality = score_calculation([trajects], PATH, connections_file, output, algorithm)
 
     # write the data to a csv file
     trajects = {traject: f"[{', '.join(trajects[traject])}]" for traject in trajects}
@@ -77,14 +77,14 @@ def load_data(datasheet):
     """
 
     if datasheet == "holland":
-        return (PATH / "data" / "StationsHolland.csv",
-                PATH / "data" / "ConnectiesHolland.csv",
+        return (PATH / "data" / "input" / "StationsHolland.csv",
+                PATH / "data" / "input" / "ConnectiesHolland.csv",
                 PATH / "data" / "holland_output" / "output_TS_holland.csv",
                 PATH / "data" / "holland_output")
 
     elif datasheet == "nationaal":
-        return (PATH / "data" / "StationsNationaal.csv",
-                PATH / "data" / "ConnectiesNationaal.csv",
+        return (PATH / "data" / "input" / "StationsNationaal.csv",
+                PATH / "data" / "input" / "ConnectiesNationaal.csv",
                 PATH / "data" / "nationaal_output" / "output_TS_nationaal.csv",
                 PATH / "data" / "nationaal_output")
 

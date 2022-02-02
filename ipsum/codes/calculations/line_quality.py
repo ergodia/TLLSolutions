@@ -10,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def score_calculation(trajects, path, connection_file):
+def score_calculation(trajects, path, connection_file, output, algorithm):
     connections = load_connections(connection_file)
 
     # create list to store dictionaries that contain possibility and quality
@@ -22,7 +22,7 @@ def score_calculation(trajects, path, connection_file):
     dataframe = pd.DataFrame(dataframe_rows)
     dataframe.plot.bar(x='possibility', y='quality', title="barplot quality per trainline possibility")
     plt.xticks(rotation='horizontal')
-    plt.savefig(path / "data" / "barplot.png")
+    plt.savefig(output / f"barplot_{algorithm}.png")
 
     return dataframe
 

@@ -102,11 +102,11 @@ def data_files(datasheet):
     """
 
     if datasheet == "holland":
-        return (PATH / "data" / "StationsHolland.csv",
-                PATH / "data" / "ConnectiesHolland.csv",
+        return (PATH / "data" / "input" / "StationsHolland.csv",
+                PATH / "data" / "input" / "ConnectiesHolland.csv",
                 PATH / "data" / "holland_output" / "output_TS_holland.csv")
 
     elif datasheet == "nationaal":
-        return (PATH / "data" / "StationsNationaal.csv",
-                PATH / "data" / "ConnectiesNationaal.csv",
+        return (PATH / "data" / "input" / "StationsNationaal.csv",
+                PATH / "data" / "input" / "ConnectiesNationaal.csv",
                 PATH / "data" / "nationaal_output" / "output_TS_nationaal.csv")

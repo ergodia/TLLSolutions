@@ -17,7 +17,7 @@ def holland_graph(path, stations_dict: dict, bbox, output, algorithm):
     """
 
     # load the map into the graph
-    map = plt.imread(path / "data" / "background_graph.png")
+    map = plt.imread(path / "data" / "input" / "background_graph.png")
 
     # set size of plot
     fig, ax = plt.subplots(figsize=(17, 20))
