@@ -1,3 +1,10 @@
+"""
+nodes.py
+
+- stations class
+- adds connections
+- calculates the number of connections
+"""
 class Stations():
     def __init__(self, name, longitude, latitude):
         self._name = name
