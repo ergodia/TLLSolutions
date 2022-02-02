@@ -14,7 +14,7 @@ from codes.classes.network import Network
 from codes.classes.stations import Stations
 from codes.classes.graph import Graph
 from codes.calculations.line_quality import score_calculation, K, load_connections
-from codes.load.graph import holland_graph
+from codes.load.visualise_graph import holland_graph
 from codes.classes.graph import Graph
 from codes.calculations.line_quality import score_calculation
 from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
@@ -25,8 +25,8 @@ PATH = Path(os.path.dirname(os.path.realpath(__file__)))
 SCORE_CONNECTIONS = load_connections(PATH / "data" / "ConnectiesNationaal.csv")
 
 
-def main(output, algorithm, datasheet, max_trajects, max_length, iterations):
-    stations_file, connections_file, network_file = load_data(datasheet)
+def main(algorithm, datasheet, max_trajects, max_length, iterations):
+    stations_file, connections_file, network_file, output = load_data(datasheet)
 
     # load the stations for the creation of the graph
     stations = Stations(stations_file)
@@ -48,7 +48,7 @@ def main(output, algorithm, datasheet, max_trajects, max_length, iterations):
 
     # create a graph of all the trajects
     data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
-    holland_graph(PATH, data, stations.bbox_limits())
+    holland_graph(PATH, data, stations.bbox_limits(), output, algorithm)
     
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH, connections_file)
@@ -56,11 +56,12 @@ def main(output, algorithm, datasheet, max_trajects, max_length, iterations):
     # write the data to a csv file
     trajects = {traject:f"[{', '.join(trajects[traject])}]" for traject in trajects}
     
+    output_csv = output / f"output_{algorithm}_{datasheet}.csv"
     output_data = pd.DataFrame.from_dict(trajects, orient="index")
     output_data.reset_index(level=0, inplace=True)
     output_data.columns = ["train", "stations"]
     output_data = output_data.append({"train":"score", "stations": quality["quality"][0]}, ignore_index=True)
-    output_data.to_csv(PATH / "data" / output, index=False)
+    output_data.to_csv(output_csv, index=False)
 
 
 def load_data(datasheet):
@@ -69,10 +70,16 @@ def load_data(datasheet):
     """
 
     if datasheet == "holland":
-        return (PATH / "data" / "StationsHolland.csv", PATH / "data" / "ConnectiesHolland.csv", PATH / "data" / "output_hol.csv")
+        return (PATH / "data" / "StationsHolland.csv", 
+                PATH / "data" / "ConnectiesHolland.csv", 
+                PATH / "data" / "holland_output" / "output_TS_holland.csv",
+                PATH / "data" / "holland_output")
 
-    elif datasheet == "national":
-        return (PATH / "data" / "StationsNationaal.csv", PATH / "data" / "ConnectiesNationaal.csv", PATH / "data" / "output_nat.csv")
+    elif datasheet == "nationaal":
+        return (PATH / "data" / "StationsNationaal.csv", 
+                PATH / "data" / "ConnectiesNationaal.csv", 
+                PATH / "data" / "nationaal_output" / "output_TS_nationaal.csv",
+                PATH / "data" / "nationaal_output")
 
 
 def traveling_salesman(graph, max_trajects, max_length, iterations):
@@ -144,9 +151,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "Run different algorithms for the RAILNL problem")
 
     # Adding arguments
-    parser.add_argument("output", help = "output file name (csv)")
     parser.add_argument("-a", "--algorithm", type=str, default = "TS", help="Algorithm TS = Traveling Salesman, SA = Simulated Annealing")
-    parser.add_argument("-d", "--datasheet", type=str, default = "national", help="Dataset (holland/national)")
+    parser.add_argument("-d", "--datasheet", type=str, default = "nationaal", help="Dataset (holland/nationaal)")
     parser.add_argument("-tra", "--max_trajects", type=int, default = 20, help="Max Trajects")
     parser.add_argument("-len", "--max_length", type=int, default = 180, help="Max Length of each traject")
     parser.add_argument("-i", "--iterations", type=int, default = 5000, help="Amount of iterations to run the algorithm")
@@ -155,4 +161,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Run main with provide arguments
-    main(args.output, args.algorithm, args.datasheet, args.max_trajects, args.max_length, args.iterations)
+    main(args.algorithm, args.datasheet, args.max_trajects, args.max_length, args.iterations)
