@@ -84,8 +84,3 @@ def connection_equals_traject_part(connection, traject, i):
 
 def T(trajects:dict):
     return len(trajects)
-
-
-
-
-        
