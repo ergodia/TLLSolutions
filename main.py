@@ -23,13 +23,7 @@ from codes.help_classes.network import Network
 from codes.help_classes.stations import Stations
 from codes.help_classes.graph import Graph
 from codes.calculations.line_quality import score_calculation, K, load_connections
-<<<<<<< HEAD
 from codes.help_functions.visualise_graph import holland_graph
-from codes.help_classes.graph import Graph
-from codes.calculations.line_quality import score_calculation
-=======
-from codes.load.visualise_graph import holland_graph
->>>>>>> fe8166922b92449d1ae9c788bf8da6e13eff114e
 from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
 from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
 
