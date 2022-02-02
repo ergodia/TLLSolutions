@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set_theme()
 
 from ..algorithms.simulated_annealing import Simulated_Annealing_Rail
-from ..classes.network import Network
-from ..classes.graph import Graph
+from ..help_classes.network import Network
+from ..help_classes.graph import Graph
 from ..calculations.line_quality import K, load_connections
 from pathlib import Path
 from progress.spinner import Spinner

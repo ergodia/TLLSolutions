@@ -5,7 +5,7 @@ import collections
 import seaborn as sns; sns.set_theme()
 
 from ..algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
-from ..classes.graph import Graph
+from ..help_classes.graph import Graph
 from ..calculations.line_quality import K, load_connections
 from pathlib import Path
 from progress.spinner import Spinner
