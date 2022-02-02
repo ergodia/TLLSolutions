@@ -1,3 +1,13 @@
+"""
+network.py
+
+- network class
+- loads trajects into a dictionary
+- calculates length and duration
+- slices trajects
+- updates the information of given traject
+"""
+
 import csv
 import copy
 import random
@@ -56,7 +66,7 @@ class Network():
         """
 
         # set the numbers back to 0 if they will be updated
-        if update == True:
+        if update is True:
             self.trajects_duration[traject] = 0
 
         # calculate the duration of each traject
@@ -71,12 +81,12 @@ class Network():
 
     def make_traject_to_spec(self, maximum_traject_length):
         """
-        Slices out a bit from the first traject which is to long from a 
+        Slices out a bit from the first traject which is to long from a
         random side. It stores the new traject and returns the sliced out bit
         """
 
         # get the first traject which is too long
-        traject_numbers = [traject for traject in self.trajects_duration 
+        traject_numbers = [traject for traject in self.trajects_duration
                            if self.trajects_duration[traject] > maximum_traject_length]
 
         # return None if all trajects are to spec
@@ -104,7 +114,7 @@ class Network():
 
             # retrieve the end index for a suitable traject
             traject_duration = 0
-            
+
             for index in range(len(traject[:-1])):
                 station1 = traject[index]
                 station2 = traject[index + 1]
@@ -113,11 +123,11 @@ class Network():
 
                 if traject_duration > maximum_traject_length:
                     end_index = index
-                    
+
                     # slice the parts out which are too much
                     sliced_out = traject[end_index:]
-                    
-                    if sliced_out != None:
+
+                    if sliced_out is not None:
                         # create the new traject
                         self.trajects[traject_number] = traject[:end_index + 1]
 
@@ -144,6 +154,6 @@ class Network():
         """
         Updates the information of the given traject_number.
         """
-        
+
         self.update_stations_set(traject_number)
         self.calc_duration(traject_number, update=True)
