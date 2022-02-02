@@ -1,6 +1,6 @@
 """
 TTL Solutions
-baseline.py
+simmulated_annealing.py
 
 This file contains the class to run the Simulated Annealing algorithm and
 the steps to change the solution.

@@ -1,6 +1,6 @@
 """
 TTL Solutions
-baseline.py
+traveling_salesman_rail.py
 
 This file contains the class to run the traveling salesman algorithm on a
 given graph with stations. (See classes/graph.py and classes/nodes.py).
