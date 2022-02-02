@@ -41,8 +41,7 @@ De code van het simulated salesman algoritme is te vinden in codes/algorithms/si
 
 <img src="data/Images/simulated_annealing_flowchart.png" width="750">
 
-
-## Gebruiksaanwijzing
+## Gebruik
 Deze codebase is volledig geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
 
 ``pip install -r requirements.txt``
