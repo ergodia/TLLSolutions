@@ -16,7 +16,7 @@ Het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwal
 
 **Voorbeeld:** Het traject [Castricum , Zaandam , Hoorn , Alkmaar] is een traject met een duur van 59 minuten, en zou dus binnen het tijdsframe passen.
 
-![Voorbeeld project](data/images/Graph_Nationaal_eerste_algoritme.png)
+![Voorbeeld project](docs/images/Graph_Nationaal_eerste_algoritme.png)
 
 *Figuur 1. Een voorbeeld van de lijnvoering van heel Nerderland*
 
@@ -36,7 +36,7 @@ Dit algoritme kiest eerst een random startpunt (startstation). Vanuit dit statio
 
 
 ## Beschrijving traveling salesman algoritme 
-De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](codes/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
+De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](docs/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
 
 <img src="docs/images/traveling_salesman_flowchart.png" width="750">
 
