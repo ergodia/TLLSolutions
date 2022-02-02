@@ -2,7 +2,7 @@ nationaal SA max_score: 6749.0
 nationaal TS max_score: 6449.0
 holland SA max_score: 9119.0
 holland TS max_score: 9019.0
-nationaal SA timing: 808.8090734481812
-nationaal TS timing: 82.56618928909302
-holland SA timing: 0.2574293613433838
-holland TS timing: 17.1116304397583
+nationaal SA timing: 856.3875880241394
+nationaal TS timing: 85.21875858306885
+holland SA timing: 0.27591609954833984
+holland TS timing: 17.799731969833374

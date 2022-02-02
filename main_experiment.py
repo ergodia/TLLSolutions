@@ -86,7 +86,7 @@ def experiments(temperature, max_algorithm_iterations, sa_iterations, ts_iterati
         max_score[f"{datasheet} SA max_score"] = simulated_annealing_score(sa_iterations, max_algorithm_iterations, temperature, datasheet, experiment)
         sa_time_end = time.time()
 
-        simulated_annealing_score_ot(sa_iterations, temperature, datasheet, experiment)
+        simulated_annealing_score_ot(max_algorithm_iterations, temperature, datasheet, experiment)
 
         # calculate the traveling salesman algorithm
         ts_time_begin = time.time()
