@@ -1,3 +1,11 @@
+"""
+TLL Solutions
+main_experiment.py
+
+Runs experiments with all available combinations of the parameters an writes
+the results to specific maps for each combination inside data/experiment.
+"""
+
 import os
 import itertools
 import time
@@ -41,24 +49,25 @@ def main():
             if max_scores[score] > best_scores[score]:
                 best_scores[score] = max_scores[score]
                 best_experiment[score] = experiment
-    
+
     # write the best scores into a text file
     with open(PATH / "data" / "experiment" / "best_scores.txt", "w") as file:
         for key, value in best_scores.items():
             file.write(f"{key}: {value} / {best_experiment[score]}\n")
 
+
 def get_all_combinations():
     """
     Returns the combination of all parameters in the experiment
     """
-    
+
     temperature = [1, 10, 20, 100, 1000, 10000, 100000]
     max_algorithm_iterations = [10, 20, 30, 50, 100]
     sa_iterations = [1, 10, 100]
     ts_iterations = [10, 100, 1000]
 
     all_combinations = list(itertools.product(*[temperature, max_algorithm_iterations, sa_iterations, ts_iterations]))
-    
+
     return all_combinations
 
 
@@ -66,19 +75,19 @@ def experiments(temperature, max_algorithm_iterations, sa_iterations, ts_iterati
     """
     Executes one experiment with the defined parameters.
     """
-    
+
     max_score = {}
     timings = {}
     datasheets = ["nationaal", "holland"]
-  
+
     for datasheet in datasheets:
-        # exevute the simulated annealing algorithm
+        # execute the simulated annealing algorithm
         sa_time_begin = time.time()
         max_score[f"{datasheet} SA max_score"] = simulated_annealing_score(sa_iterations, max_algorithm_iterations, temperature, datasheet, experiment)
         sa_time_end = time.time()
- 
+
         simulated_annealing_score_ot(sa_iterations, temperature, datasheet, experiment)
-        
+
         # calculate the traveling salesman algorithm
         ts_time_begin = time.time()
         max_score[f"{datasheet} TS max_score"] = traveling_salesman_score(ts_iterations, datasheet, experiment)
