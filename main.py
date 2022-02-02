@@ -1,6 +1,15 @@
 """
 TLL Solutions
 main.py
+
+Runs standard the Traveling Salesman algorithm on the "nationaal" data.
+
+Runs the algorithms present in this repository based on the following arguments:
+- a = algorithm
+- d = datasheet: Options: national, holland
+- tra = maximum amount of trajects
+- len = maximum length of trajects
+- i = amount of iterations a algorithm has to run.
 """
 
 import os
@@ -15,8 +24,6 @@ from codes.classes.stations import Stations
 from codes.classes.graph import Graph
 from codes.calculations.line_quality import score_calculation, K, load_connections
 from codes.load.visualise_graph import holland_graph
-from codes.classes.graph import Graph
-from codes.calculations.line_quality import score_calculation
 from codes.algorithms.traveling_salesman_rail import Traveling_Salesman_Rail
 from codes.algorithms.simulated_annealing import Simulated_Annealing_Rail
 
@@ -33,7 +40,7 @@ def main(algorithm, datasheet, max_trajects, max_length, iterations):
 
     # load everything inside a graph
     graph = Graph(stations_file, connections_file)
-    
+
     # load everything in a network
     network = Network(network_file, graph.stations)
 
@@ -47,20 +54,20 @@ def main(algorithm, datasheet, max_trajects, max_length, iterations):
         exit()
 
     # create a graph of all the trajects
-    data = {train:stations.data_from_stations(trajects[train]) for train in trajects}
+    data = {train: stations.data_from_stations(trajects[train]) for train in trajects}
     holland_graph(PATH, data, stations.bbox_limits(), output, algorithm)
-    
+
     # calculate the quality of the trajects
     quality = score_calculation([trajects], PATH, connections_file)
-    
+
     # write the data to a csv file
-    trajects = {traject:f"[{', '.join(trajects[traject])}]" for traject in trajects}
-    
+    trajects = {traject: f"[{', '.join(trajects[traject])}]" for traject in trajects}
+
     output_csv = output / f"output_{algorithm}_{datasheet}.csv"
     output_data = pd.DataFrame.from_dict(trajects, orient="index")
     output_data.reset_index(level=0, inplace=True)
     output_data.columns = ["train", "stations"]
-    output_data = output_data.append({"train":"score", "stations": quality["quality"][0]}, ignore_index=True)
+    output_data = output_data.append({"train": "score", "stations": quality["quality"][0]}, ignore_index=True)
     output_data.to_csv(output_csv, index=False)
 
 
@@ -70,14 +77,14 @@ def load_data(datasheet):
     """
 
     if datasheet == "holland":
-        return (PATH / "data" / "StationsHolland.csv", 
-                PATH / "data" / "ConnectiesHolland.csv", 
+        return (PATH / "data" / "StationsHolland.csv",
+                PATH / "data" / "ConnectiesHolland.csv",
                 PATH / "data" / "holland_output" / "output_TS_holland.csv",
                 PATH / "data" / "holland_output")
 
     elif datasheet == "nationaal":
-        return (PATH / "data" / "StationsNationaal.csv", 
-                PATH / "data" / "ConnectiesNationaal.csv", 
+        return (PATH / "data" / "StationsNationaal.csv",
+                PATH / "data" / "ConnectiesNationaal.csv",
                 PATH / "data" / "nationaal_output" / "output_TS_nationaal.csv",
                 PATH / "data" / "nationaal_output")
 
@@ -86,9 +93,9 @@ def traveling_salesman(graph, max_trajects, max_length, iterations):
     """
     Runs the traveling_salesman algorithm an amount of times and will return the best score.
     """
-    
-    best_score = 0 
-    
+
+    best_score = 0
+
     # start the bar progress bar
     bar = Bar("Progress Traveling_Salesman", max=iterations)
 
@@ -97,7 +104,7 @@ def traveling_salesman(graph, max_trajects, max_length, iterations):
         trajects, check = Traveling_Salesman_Rail(graph, max_trajects, max_length).run()
 
         # if the solution is not correct then just continue
-        if check == False:
+        if check is False:
             # go to the next iteration
             bar.next()
             continue
@@ -109,12 +116,12 @@ def traveling_salesman(graph, max_trajects, max_length, iterations):
         if score > best_score:
             best_network = copy.deepcopy(trajects)
             best_score = score
-        
+
         # go to the next iteration
         bar.next()
 
     bar.finish()
-        
+
     return best_network
 
 
@@ -125,7 +132,7 @@ def simulated_annealing(network, max_trajects, max_length, max_algorithm_iterati
 
     best_score = 0
     base_network = copy.deepcopy(network)
-    
+
     # start the bar progress bar
     bar = Bar("Progress Simulated Annealing", max=iterations)
 
@@ -137,26 +144,26 @@ def simulated_annealing(network, max_trajects, max_length, max_algorithm_iterati
         if score > best_score:
             best_network = copy.deepcopy(network)
             best_score = score
-        
+
         # go to the next iteration
         bar.next()
 
     bar.finish()
-        
+
     return best_network
 
 
 if __name__ == "__main__":
     # Set-up parsing command line arguments
-    parser = argparse.ArgumentParser(description = "Run different algorithms for the RAILNL problem")
+    parser = argparse.ArgumentParser(description="Run different algorithms for the RAILNL problem")
 
     # Adding arguments
-    parser.add_argument("-a", "--algorithm", type=str, default = "TS", help="Algorithm TS = Traveling Salesman, SA = Simulated Annealing")
-    parser.add_argument("-d", "--datasheet", type=str, default = "nationaal", help="Dataset (holland/nationaal)")
-    parser.add_argument("-tra", "--max_trajects", type=int, default = 20, help="Max Trajects")
-    parser.add_argument("-len", "--max_length", type=int, default = 180, help="Max Length of each traject")
-    parser.add_argument("-i", "--iterations", type=int, default = 5000, help="Amount of iterations to run the algorithm")
-    
+    parser.add_argument("-a", "--algorithm", type=str, default="TS", help="Algorithm TS = Traveling Salesman, SA = Simulated Annealing")
+    parser.add_argument("-d", "--datasheet", type=str, default="nationaal", help="Dataset (holland/nationaal)")
+    parser.add_argument("-tra", "--max_trajects", type=int, default=20, help="Max Trajects")
+    parser.add_argument("-len", "--max_length", type=int, default=180, help="Max Length of each traject")
+    parser.add_argument("-i", "--iterations", type=int, default=5000, help="Amount of iterations to run the algorithm")
+
     # Read arguments from command line
     args = parser.parse_args()
 
