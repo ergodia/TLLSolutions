@@ -279,12 +279,10 @@ class Simulated_Annealing_Rail():
         
         # clear the original traject if this is used and update the traject_duration/length and stations_set
         if original_traject_number != None:
-            self._working_network.update_stations_set(original_traject_number)
-            self._working_network.calc_duration(original_traject_number, update=True)
+            self._working_network.update_traject_info(original_traject_number)
         
         # update the traject_duration/length and update the stations_set of the implement traject
-        self._working_network.update_stations_set(implement_traject)
-        self._working_network.calc_duration(implement_traject, update=True)
+        self._working_network.update_traject_info(implement_traject)
 
     def get_implement_traject(self, traject_to_implement, original_traject_number):
         """
