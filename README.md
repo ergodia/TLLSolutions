@@ -18,7 +18,7 @@ Het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwal
 
 ![Voorbeeld project](data/images/Graph_Nationaal_eerste_algoritme.png)
 
-*Figuur 1. Een voorbeeld van de lijnvoering nationaal*
+*Figuur 1. Een voorbeeld van de lijnvoering van heel Nerderland*
 
 ## Belangrijke begrippen
 - **Traject**: *Trein X: Amsterdam Centraal -> Amsterdam Sloterdijk -> Haarlem --> Leiden Centraal* 
@@ -66,7 +66,7 @@ Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden
 - `'d'` = datasheet: Opties: national, holland
 - `'tra'` = maximaal aantal trajecten
 - `'len'` = maximale lengte per traject
-- `'i'` = aantal verschillende iteraties dat moet worden uitgevoerd van een bepaald algoritme en daaruit een maximale score moet komen.
+- `'i'` = aantal verschillende iteraties die moeten worden uitgevoerd van een bepaald algoritme, waaruit een maximale score moet komt.
 
 Een voorbeeld om dit uit te voeren is:
 

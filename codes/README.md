@@ -1,44 +1,47 @@
 # Codes
 
 De folder **codes** is onderverdeeld in algoritmes, analyse, berekeningen, classes en een loader.
+
 In onderstaande uitleg wordt een beschrijving van de inhoud per folder gegeven.
 
-## Algorithms
-In deze map staan de verschillende algoritmes om een lijnvoering te maken.
+*TSP = Traveling Salesman Problem*
 
-`baseline.py`
-traveling salesman met random startpunt
+*SA = Simulated Annealing*
 
-`simulated_annealing.py`
-zie omschrijving in file zelf
+## algorithms
+### Folder met files met algoritmes om een lijnvoering te maken:
 
-`traveling_salesman_rail.py`
-nog invullen
+- `baseline.py` is file waar een algoritme gebaseerd op het TSP instaat, met als uitgangspunt een random beginpunt.
+- `simulated_annealing.py` is een file waarin je het SA algoritme kan runnen.
+- `traveling_salesman_rail.py` is een file waarin je een algoritme gebaseerd op het TSP algoritme kan runnen.
 
-## Analyze
+## analyze
+### Folder met files om de algoritmes te testen:
 
-`simulated_annealing_dis.py` score een x-aantal keer in overtime komt een grafiek met score per oplossing die die accepepteerd.
-`traveling_salesman_dis.py` TS een x-aantal keer uitvoeren.
+- `simulated_annealing_dis.py` genereerd een score een x-aantal keer op basis van het SA algoritme, per score wordt er een grafiek gemaakt.
+- `traveling_salesman_dis.py` bevat het experiment voor het TSP algoritme, en retourneerd de hoogste score.
 
 ## calculations
 
-`calculations_statespace.py`
+### Folder met files waarin de state-space en de kwaliteit van de lijnvoerig kan worden berekend:
 
-`line_quality` berekend de kwaliteit van de lijnvoering.
+- `calculations_statespace.py` bevat de verschillende formules om de state-space te berekenen.
+- `line_quality.py` berekent de kwaliteit van de lijnvoering.
 
 
 ## classes
+### Folder met files met classes die stations inladen en knooppunten verbinden:
 
-`graph.py` knoopuntennetwerk
-`network.py` hulp class voor simulated annealing (gevulde graaf met trajecten) / een lijnvoering
-`nodes.py` de knoopunten die zich in het netwerk bevinden, hulp graph.py
-`stations.py` stationbestand inladen voor de grafieken
+- `graph.py` is een file om een graaf te maken met alle verbindingen
+- `network.py` is een hulp class voor SA (gevulde graaf met trajecten)
+- `nodes.py` bevat de knooppunten die zich in de graf bevinden
+- `stations.py` laad het station bestand in voor de grafieken
 
 ## load
+### Folder met files om afstandtabel en visualisatie te maken:
 
-`distance_table.py` geeft trajecten en connecties weer
-
-`visualize_graph.py` maakt kaart van graaf
+- `distance_table.py` maakt een afstandstabel waarin de connecties goed af te lezen zijn
+- `visualize_graph.py` maakt een visualisatie van alle trajecten op de kaart van Nederland
 
 
 
