@@ -1,13 +1,20 @@
-import csv
+"""
+graph.py
 
+- graph class
+- loads stations and connections
+- calculate the number of connections
+"""
+
+import csv
 from .nodes import Stations
+
 
 class Graph():
     def __init__(self, stations_csv, connections_csv):
         self.stations = self.load_stations(stations_csv)
         self.load_connections(connections_csv)
         self.calc_num_connections()
-
 
     def load_stations(self, stations_csv):
         """
@@ -17,9 +24,8 @@ class Graph():
         with open(stations_csv, "r") as file:
             reader = csv.DictReader(file)
 
-            return {row["station"]:Stations(row["station"], row["y"], row["x"]) for row in reader}
+            return {row["station"]: Stations(row["station"], row["y"], row["x"]) for row in reader}
 
-    
     def load_connections(self, connections_csv):
         """
         Loads all the possible connections from the csv file with the connections.
@@ -33,7 +39,6 @@ class Graph():
                 self.stations[row["station1"]].add_connection(row["station2"], float(row["distance"]))
                 self.stations[row["station2"]].add_connection(row["station1"], float(row["distance"]))
 
-    
     def calc_num_connections(self):
         """
         Calculates the number of connections for each station.
@@ -41,7 +46,6 @@ class Graph():
 
         for station in self.stations:
             self.stations[station].calc_num_connections()
-
 
     def __str__(self):
         return f"{self.stations}"
