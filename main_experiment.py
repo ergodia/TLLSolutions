@@ -81,7 +81,7 @@ def experiments(temperature, max_algorithm_iterations, sa_iterations, ts_iterati
     datasheets = ["nationaal", "holland"]
 
     for datasheet in datasheets:
-        # exevute the simulated annealing algorithm
+        # execute the simulated annealing algorithm
         sa_time_begin = time.time()
         max_score[f"{datasheet} SA max_score"] = simulated_annealing_score(sa_iterations, max_algorithm_iterations, temperature, datasheet, experiment)
         sa_time_end = time.time()
