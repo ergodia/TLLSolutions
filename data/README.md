@@ -1,12 +1,14 @@
 # Data
 
+In de deze folder staat de input die ingelezen wordt door de verschillende programma's en de output die wordt gegenereerd.
+
+In onderstaande omschrijving wordt de inhoud per folder beschreven:
+
 ## experiment
-Output van een aantal paarmeters gegeven in het experiment. In `main_experiment.py` worden deze gegegenereerd. Ook zijn de beste scores te zien.
+Bevat de output van de verschillende parameters die gegeven zijn in het experiment. In **main_experiment.py** worden deze gegegenereerd. Ook zijn de beste scores te zien en grafieken die gemaakt zijn voor **experiment.md**
 
 ## holland_output
-
-
-## images
+Bevat de output van Holland die gegenereerd is in main.py als CSV-file en PNG-afbeelding.
 
 ## nationaal_output
-Een png van de kaart van Nederland nationaal en de output Traveling Salesman en Simulated Annealing
+Bevat de output van Nederland die gegenereerd is in main.py als CSV-file en PNG-afbeelding.
