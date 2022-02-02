@@ -42,7 +42,7 @@ De code van het simulated salesman algoritme is te vinden in codes/algorithms/si
 <img src="data/Images/simulated_annealing_flowchart.png" width="750">
 
 ## Gebruik
-Deze codebase is volledig geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
+In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
 
 ``pip install -r requirements.txt``
 
@@ -52,11 +52,11 @@ Standaard wordt het ``traveling salesman`` algoritme uitgevoerd op de nationale 
 
 Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden.
 
--a = algoritme: Opties: TS (Traveling Salesman), SA(Simulated Annealing)
--d = datasheet: Opties: national, holland
--tra = maximaal aantal trajecten
--len = maximale lengte per traject
--i = aantal verschillende iteraties dat moet worden uitgevoerd van een bepaald algoritme en daaruit een maximale score moet komen.
+- a = algoritme: Opties: TS (Traveling Salesman), SA(Simulated Annealing)
+- d = datasheet: Opties: national, holland
+- tra = maximaal aantal trajecten
+- len = maximale lengte per traject
+- i = aantal verschillende iteraties dat moet worden uitgevoerd van een bepaald algoritme en daaruit een maximale score moet komen.
 
 Het programma ``main_experiment.py`` is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie ``get_all_combinations()``. 
 
