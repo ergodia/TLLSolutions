@@ -38,13 +38,13 @@ Dit algoritme kiest eerst een random startpunt (startstation). Vanuit dit statio
 ## Beschrijving traveling salesman algoritme 
 De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](codes/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
 
-<img src="data/images/traveling_salesman_flowchart.png" width="750">
+<img src="docs/images/traveling_salesman_flowchart.png" width="750">
 
 *Figuur 2. Een flowchart van het Traveling Salesman algoritme*
 ## Beschrijving simulated annealing algoritme
 De code van het simulated salesman algoritme is te vinden in [simulated_annealing.py](codes/algorithms/simulated_annealing.py). In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
 
-<img src="data/images/simulated_annealing_flowchart.png" width="750">
+<img src="docs/images/simulated_annealing_flowchart.png" width="750">
 
 *Figuur 3. Een flowchart van het Simulated Annealing algoritme*
 ## Gebruik
@@ -62,11 +62,11 @@ python3 main.py
 
 Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden.
 
-- a = algoritme: Opties: TS (Traveling Salesman), SA(Simulated Annealing)
-- d = datasheet: Opties: national, holland
-- tra = maximaal aantal trajecten
-- len = maximale lengte per traject
-- i = aantal verschillende iteraties dat moet worden uitgevoerd van een bepaald algoritme en daaruit een maximale score moet komen.
+- `'a'` = algoritme: Opties: TS (Traveling Salesman), SA(Simulated Annealing)
+- `'d'` = datasheet: Opties: national, holland
+- `'tra'` = maximaal aantal trajecten
+- `'len'` = maximale lengte per traject
+- `'i'` = aantal verschillende iteraties dat moet worden uitgevoerd van een bepaald algoritme en daaruit een maximale score moet komen.
 
 Een voorbeeld om dit uit te voeren is:
 
