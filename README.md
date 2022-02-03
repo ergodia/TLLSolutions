@@ -16,7 +16,7 @@ Het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwal
 
 **Voorbeeld:** Het traject [Castricum , Zaandam , Hoorn , Alkmaar] is een traject met een duur van 59 minuten, en zou dus binnen het tijdsframe passen.
 
-![Voorbeeld project](docs/images/Graph_Nationaal_eerste_algoritme.png)
+![Voorbeeld project](docs/Graph_Nationaal_eerste_algoritme.png)
 
 *Figuur 1. Een voorbeeld van de lijnvoering van heel Nerderland*
 
@@ -31,20 +31,20 @@ Het maken van de lijnvoering van intercitytreinen in Nederland met een hoge kwal
 
 
 ## Beschrijving baseline
-De code van de baseline is te vinden in [baseline.py](codes/algorithms/baseline.py)
+De code van de baseline is te vinden in [baseline.py](railnl/codes/algorithms/baseline.py)
 Dit algoritme kiest eerst een random startpunt (startstation). Vanuit dit station zal het algoritme gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Dit zal het algoritme doen totdat er geen mogelijkheden meer zijn. Het probleem met dit algoritme is dat niet alle stations worden bezocht, omdat soms een station 'vast' komt te zitten tussen al bereden stations. Dit resulteert in een lage kwaliteit.
 
 
 ## Beschrijving traveling salesman algoritme 
-De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](docs/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
+De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](railnl/docs/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
 
-![Traveling Salesman](docs/images/traveling_salesman_flowchart.png)
+![Traveling Salesman](docs/traveling_salesman_flowchart.png)
 
 *Figuur 2. Een flowchart van het Traveling Salesman algoritme*
 ## Beschrijving simulated annealing algoritme
-De code van het simulated salesman algoritme is te vinden in [simulated_annealing.py](codes/algorithms/simulated_annealing.py). In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
+De code van het simulated salesman algoritme is te vinden in [simulated_annealing.py](railnl/codes/algorithms/simulated_annealing.py). In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
 
-![Simulated Annealing](docs/images/simulated_annealing_flowchart.png)
+![Simulated Annealing](docs/simulated_annealing_flowchart.png)
 
 *Figuur 3. Een flowchart van het Simulated Annealing algoritme*
 ## Gebruik
@@ -54,13 +54,13 @@ In requirements.txt staan alle benodigde packages om de code succesvol te draaie
 pip install -r requirements.txt
 ```
 
-Het standaard programma [main.py](main.py) wordt gebruikt om de twee algoritmes aan te sturen. Dit werkt op de volgende manieren:
-Standaard wordt het [traveling salesman](codes/algorithms/traveling_salesman_rail.py) algoritme uitgevoerd op de nationale data. Hiervoor kan de volgende instructie worden uitgevoerd:
+Het standaard programma [main.py](railnl/main.py) wordt gebruikt om de twee algoritmes aan te sturen. Dit werkt op de volgende manieren:
+Standaard wordt het [traveling salesman](railnl/codes/algorithms/traveling_salesman_rail.py) algoritme uitgevoerd op de nationale data. Hiervoor kan de volgende instructie worden uitgevoerd:
 ```
 python3 main.py
 ```
 
-Het programma [main_experiment.py](main_experiment.py) is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie `'get_all_combinations()'`.
+Het programma [main_experiment.py](railnl/main_experiment.py) is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie `'get_all_combinations()'`.
 
 Om de algoritmes uit te voeren moeten meerdere argumenten uitgevoerd worden:
 
