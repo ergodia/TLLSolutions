@@ -17,7 +17,7 @@ In de folder "experiment" `../data/experiment/` is de distributie opgeslagen.
 
 Het Simulated Annealing (SA) algoritme heeft een hogere maximale kwaliteit dan het Traveling Salesman (TS) algoritme. De kwaliteit van de lijnvoering bij het TS is verdeeld in een kwaliteit van 9019 en 9119 (Figuur 1A). De hogere kwaliteit (9119) bij TS is gelijk aan de constante kwaliteit van SA (Figuur 1B). Dit komt omdat het TS één bepaalde richting kiest en daarop een traject creëert; bij SA worden de trajecten die bij TS gecreëerd zijn aangepast en verbeterd. Bij SA zal dit dus altijd resulteren in een optimale kwaliteit van de lijnvoering. Verder is het SA honderd keer uitgevoerd en TS duizend keer. Dit komt omdat de kwaliteit van de SA naar 100 keer al stabiel is; bij TS duurt het langer voordat de kwaliteit stabiel is.
 
-![Figuur 1](../docs/images/Figuur1.jpg)
+![Figuur 1](../docs/Figuur1.jpg)
 
 *Figuur 1. A. Barplot van de verdeling van de kwaliteit van het TS algoritme op Holland-gebied na 1000 iteraties. De x-as is de kwaliteit en de y-as hoe vaak deze kwaliteit de uitkomst was van het algoritme. B. Barplot van de verdeling van de kwaliteit van het SA algoritme op Holland-gebied na 100 iteraties. De x-as is de kwaliteit en de y-as hoe vaak deze kwaliteit de uitkomst was van het algoritme.*
 
@@ -28,7 +28,7 @@ Het Simulated Annealing (SA) algoritme heeft een hogere maximale kwaliteit dan h
 
 SA algoritme heeft weer een hogere maximale kwaliteit (6749) dan TS (6649). Op nationaal niveau hebben TS en SA allebei een kwaliteitsverdeling (Figuur 2A, 2B). Verder is er een sterke verdeling te zien bij TS. Dit komt omdat alle lijnvoeringen waarin niet alle verbindingen worden bereden ook in de barplot worden gevisualiseerd. Ook is het daarbij belangrijk om te realiseren dat de verdeling waarschijnlijk nog beter te zien is bij meer iteraties. Er kan wel geconcludeerd worden dat de verdeling wel ongeveer gelijk zal blijven bij SA, 6649 (~70%) en 6649 (~30%).
 
-![Figuur 2](../docs/images/Figuur2.jpg)
+![Figuur 2](../docs/Figuur2.jpg)
 
 *Figuur 2. A. Barplot van de verdeling van de kwaliteit van het TS algoritme op spoorwegen van Nederland na 1000 iteraties. De x-as is de kwaliteit en de y-as hoe vaak deze kwaliteit de uitkomst was van het algoritme. B. Barplot van de verdeling van de kwaliteit van het SA algoritme op spoorwegen van Nederland na 100 iteraties. De x-as is de kwaliteit en de y-as hoe vaak deze kwaliteit de uitkomst was van het algoritme.
 Conclusie eerste analyse
@@ -89,14 +89,14 @@ De verschillende parametercombinaties hebben allen een verschillende tijdsduur. 
 
 De resultaten van de baseline wijken af van de andere algoritmen. Het baseline algoritme kiest altijd voor de verbinding met de laagste tijd. Door deze manier van redeneren blijft er soms een station over wat ervoor zorgt dat de uitkomst van de kwaliteit lager is. In Figuur 3B zie je bijvoorbeeld dat er verbindingen ontbreken (niet alle trajecten zijn met elkaar verbonden). De kwaliteit van deze lijnvoering in gevisualiseerd in Figuur 3A.
 
-![Figuur 3](../docs/images/Figuur3.jpg)
+![Figuur 3](../docs/Figuur3.jpg)
 
 ***Figuur 3. A.*** *Bar plot van de kwaliteit van de trajecten gegeneerd door het algoritme. Als de score 10.000 is dan is de hoogste kwaliteit behaald. B. Landkaart van Nederland waarin de trajecten gevisualiseerd zijn door verschillende kleuren lijnen.*
 
 ### Traveling Salesman
 De resultaten van het TS algoritme wijken af van de baseline. In Figuur 4B is te zien dat alle verbindingen wel bereden worden bij TS.
 
-![Figuur 4](../docs/images/Figuur4.jpg)
+![Figuur 4](../docs/Figuur4.jpg)
 
 ***Figuur 4. A.*** *Tabel van gegenereerde trajecten door het TS. B. Landkaart van Nederland waarin de trajecten 
 gevisualiseerd zijn door verschillende kleuren lijnen.*
@@ -109,7 +109,7 @@ De kwaliteit van TS is 6549 (Figuur 4A), wat hoger is dan de baseline. Dit komt 
 ### Simulated Annealing
 SA heeft ongeveer dezelfde verschillen met de baseline als TS. Het nieuwe verschil is dat het SA algoritme de uitkomst van TS probeert te optimaliseren door middel van korte trajecten te knippen en plakken in andere trajecten. Hierdoor creëert SA minder trajecten wat moet resulteren in een hogere kwaliteit. Echter, vanuit de resultaten (Figuur 5A, 5B) is op te maken dat de kwaliteit van SA (6749) niet heel veel hoger is dan dat van TS (6549), wat dus het verschil met de baseline niet veel anders maakt dan bij TS.
 
-![Figuur 5](../docs/images/Figuur5.jpg)
+![Figuur 5](../docs/Figuur5.jpg)
 
 ***Figuur 5. A.*** *Tabel van gegenereerde trajecten door het SA. B. Landkaart van Nederland waarin de trajecten 
 gevisualiseerd zijn door verschillende kleuren lijnen.*
@@ -127,10 +127,10 @@ De kwaliteit is 6749 (Figuur 5A), wat hoger is dan de baseline en hoger dan TS. 
 De uiteindelijke kwaliteit van TS komt vooral door de (soms vaste) verschillende stappen die het algoritme moet zetten. Hij begint altijd met de stations met maar één verbinding. Verder mogen de stations met 2 of meer verbindingen vaker worden bezocht en als het algoritme moet kiezen tussen twee stations, dan kiest die altijd voor degene die nog niet is geweest. Door deze opbouw wordt er voorkomen dat verbindingen worden overgeslagen. Wel worden alle 20 trajecten gebruikt; ook trajecten met maar 1 verbinding (2 stations). Dit resulteert in een lagere kwaliteit. Om dit probleem op te lossen is er een SA algoritme toegepast op de uitkomst van TS.
 De uiteindelijke kwaliteit van SA (die hoger is dan TS) komt door het knippen en plakken van gehele korte trajecten, trajecten met maar 1 of 2 verbindingen, in andere trajecten. Dit resulteert in een op en neer gaande kwaliteit (Figuur 6), want het algoritme ‘probeert’ heel veel verschillende trajecten, ook al is de kwaliteit soms minder goed. Wel is de uiteindelijke maximale kwaliteit hoger dan bij het TS algoritme, maar niet veel hoger dan TS. 
 
-![Figuur 6](../docs/images/Figuur6.jpg)
+![Figuur 6](../docs/Figuur6.jpg)
 
 ***Figuur 6.*** *Grafiek van alternerende kwaliteit door SA algoritme.*
 
-## Waar ligt nog ruimt voor verbetering?
+## Waar ligt nog ruimte voor verbetering?
 Er is wel een probleem met het SA algoritme: het lijkt alsof hij blijft hangen op een maximale kwaliteit; het lukt het algoritme niet om de kwaliteit beter te maken. Een oplossing zou kunnen zijn om in plaats van hele trajecten te knippen en te plakken, delen van trajecten te knippen (dus bijvoorbeeld maar 1 verbinding binnen een traject). Door gebrek aan tijd hebben wij dit laatste niet kunnen testen, maar dit zou zeker interessant zijn voor toekomstig onderzoek naar een beter algoritme. Verder hebben we vanaf het begin af aan een voorwaarde aan beide algoritmes (TS en SA) gegeven: het algoritme moet beginnen bij een station met maar 1 verbinding. Een alternatief op deze regel zou kunnen zijn dat het een prioriteit is om in plaats van te beginnen bij een station met 1 verbinding, te eindigen bij een station met 1 verbinding. Tot slot zou er in toekomstig onderzoek ook nog kunnen worden gekeken naar het gebruik van de coördinaten als voorwaarde. Bijvoorbeeld, beginnen bij de stations die het meest uit het midden liggen, dit om te voorkomen dat het algoritme altijd start bij 1 verbindingsstations. 
 
