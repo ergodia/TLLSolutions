@@ -38,13 +38,13 @@ Dit algoritme kiest eerst een random startpunt (startstation). Vanuit dit statio
 ## Beschrijving traveling salesman algoritme 
 De code van het traveling salesman algoritme is te vinden in [traveling_salesman.py](docs/algorithms/traveling_salesman_rail.py). Het algoritme zal beginnen bij een station met maar 1 verbinding. Daarna zal het algoritme, net als bij de baseline, gaan zoeken naar de kortste verbindingsmogelijkheid en daar naartoe gaan, tenzij deze al is bezocht. Allee stations meer dan 1 mogelijke verbinding mogen meerdere keren bezocht worden. Dit om te voorkomen dat sommige verbindingen niet worden bereden. Het algoritme geeft een correcte oplossing waarin alle verbindingen zijn bereden binnen het tijdframe van 3 uur en maximale aantal trajecten.
 
-<img src="docs/images/traveling_salesman_flowchart.png" width="750">
+![Traveling Salesman](docs/images/traveling_salesman_flowchart.png)
 
 *Figuur 2. Een flowchart van het Traveling Salesman algoritme*
 ## Beschrijving simulated annealing algoritme
 De code van het simulated salesman algoritme is te vinden in [simulated_annealing.py](codes/algorithms/simulated_annealing.py). In dit algoritme wordt de eindlijnvoering van het 1e algoritme (traveling salesman algoritme) gebruikt als beginpunt. Daarna zal het kortste traject - trajecten korter dan 3 stations - proberen te worden bijgevoegd bij een ander traject. Dit om het aantal (korte) trajecten terug te dringen, en hiermee het totaal aantal trajecten te verminderen. Dit zal moeten resulteren in een hogere kwaliteit lijnvoering.
 
-<img src="docs/images/simulated_annealing_flowchart.png" width="750">
+![Simulated Annealing](docs/images/simulated_annealing_flowchart.png)
 
 *Figuur 3. Een flowchart van het Simulated Annealing algoritme*
 ## Gebruik
@@ -55,32 +55,36 @@ pip install -r requirements.txt
 ```
 
 Het standaard programma [main.py](main.py) wordt gebruikt om de twee algoritmes aan te sturen. Dit werkt op de volgende manieren:
-Standaard wordt het [traveling salesman](codes/algorithms/traveling_salesman_rail.py) algoritme uitgevoerd op de nationale data. Hiervoor hoeft alleen het volgende instructie worden uitgevoerd:
+Standaard wordt het [traveling salesman](codes/algorithms/traveling_salesman_rail.py) algoritme uitgevoerd op de nationale data. Hiervoor kan de volgende instructie worden uitgevoerd:
 ```
 python3 main.py
 ```
 
-Om het andere algoritme uit te voeren moeten somige argumenten uitgevoerd worden.
+Het programma [main_experiment.py](main_experiment.py) is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie `'get_all_combinations()'`.
 
-- `'a'` = algoritme: Opties: TS (Traveling Salesman), SA(Simulated Annealing)
-- `'d'` = datasheet: Opties: national, holland
+Om de algoritmes uit te voeren moeten meerdere argumenten uitgevoerd worden:
+
+- `'a'` = algoritme - Opties: TS (Traveling Salesman), SA(Simulated Annealing)
+- `'d'` = datasheet - Opties: national, holland
 - `'tra'` = maximaal aantal trajecten
 - `'len'` = maximale lengte per traject
-- `'i'` = aantal verschillende iteraties die moeten worden uitgevoerd van een bepaald algoritme, waaruit een maximale score moet komt.
+- `'i'` = aantal verschillende iteraties die moeten worden uitgevoerd van een bepaald algoritme, waaruit een maximale score moet komt
 
-Een voorbeeld om dit uit te voeren is:
+Met de volgende instructie kan dit worden uitgevoerd:
 
 ```
 python3 main_experiment.py
 ```
 
-Het programma [main_experiment.py](main_experiment.py) is een programma dat kan worden uitgevoerd om meerdere parameters te testen op de algoritmes. Deze parameters kunnen worden aangepast naar wens in het python script bij de functie `'get_all_combinations()'`.
-
-Uit het programma komen alle verschillende parameter combinaties met hun maximale score en de daarbij behorende grafieken.
+Uit het programma komen alle verschillende parametercombinaties met hun maximale score en de daarbij behorende grafieken.
 
 ### Structuur
-Het programma bestaat uit meerdere folders waarin verschillende aspecten van het project te vinden zijn. De folder `'codes'` omvat alle code. Deze folder is ook weer onderverdeeld in verschillende typen code. De `'algorithms'` folder omvat de verschillende algoritmes die de lijnvoeringen genereren, `'classes'` omvat alle objecten die nodig zijn voor het project (bijv. stations, mogelijke verbindingen en nodes). Verder is er ook nog de `'trials'` folder waarin overige code, zoals de berekening van de kwaliteit of of berekening van de state-space, zijn opgeslagen.
-De folder `'data'` omvat alle input- en outputfiles die worden gebruikt en worden gegeneert door het programma.
+Het programma bestaat uit meerdere folders waarin verschillende aspecten van het project te vinden zijn:
+- De folder `'codes'` omvat alle code. Deze folder is ook weer onderverdeeld in verschillende typen code.
+- De `'algorithms'` folder omvat de verschillende algoritmes die de lijnvoeringen genereren.
+- In de folders `'help_classes'` en `'help_functions'` staan alle files die nodig zijn voor het project (bijv. stations, mogelijke verbindingen en nodes.
+- In de folder  `'calculations'` staat de overige code, zoals de berekening van de kwaliteit of of berekening van de state-space, zijn opgeslagen.
+- De folder `'data'` omvat alle input- en outputfiles die worden gebruikt en worden gegeneert door het programma.
 
 ## Acknowledgements
 
