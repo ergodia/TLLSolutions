@@ -5,10 +5,13 @@ In de deze folder staat de input die ingelezen wordt door de verschillende progr
 In onderstaande omschrijving wordt de inhoud per folder beschreven:
 
 ## experiment
-Bevat de output van de verschillende parameters die gegeven zijn in het experiment. In **main_experiment.py** worden deze gegegenereerd. Ook zijn de beste scores te zien en grafieken die gemaakt zijn voor **experiment.md**
+Bevat de output van de verschillende parameters die gegeven zijn in het experiment. In `main_experiment.py` worden deze gegegenereerd. Ook zijn de beste scores te zien en grafieken die gemaakt zijn voor `experiment.md`
+
+## input
+Bevat de bestanden die nodig zijn om het programma te runnen en een output te genereren.
 
 ## holland_output
-Bevat de output van Holland die gegenereerd is in main.py als CSV-file en PNG-afbeelding.
+Bevat de output van Holland die gegenereerd is in `main.py` als CSV-file en PNG-afbeelding.
 
 ## nationaal_output
-Bevat de output van Nederland die gegenereerd is in main.py als CSV-file en PNG-afbeelding.
+Bevat de output van Nederland die gegenereerd is in `main.py` als CSV-file en PNG-afbeelding.

@@ -32,13 +32,13 @@ In onderstaande uitleg wordt een beschrijving van de inhoud per folder gegeven.
 ## help_classes
 ### Folder met files met classes die stations inladen en knooppunten verbinden:
 
-- `graph.py` is een file om een graaf te maken met alle verbindingen
-- `network.py` is een hulp class voor SA (gevulde graaf met trajecten)
-- `nodes.py` bevat de knooppunten die zich in de graf bevinden
-- `stations.py` laad het station bestand in voor de grafieken
+- `graph.py` is een file om een graaf te maken met alle verbindingen.
+- `network.py` is een hulp class voor SA (gevulde graaf met trajecten).
+- `nodes.py` bevat de knooppunten die zich in de graf bevinden.
+- `stations.py` laad het station bestand in voor de grafieken.
 
 ## help_functions
 ### Folder met files om afstandtabel en visualisatie te maken:
 
-- `distance_table.py` maakt een afstandstabel waarin de connecties goed af te lezen zijn
-- `visualize_graph.py` maakt een visualisatie van alle trajecten op de kaart van Nederland
+- `distance_table.py` maakt een afstandstabel waarin de connecties goed af te lezen zijn.
+- `visualize_graph.py` maakt een visualisatie van alle trajecten op de kaart van Nederland.
